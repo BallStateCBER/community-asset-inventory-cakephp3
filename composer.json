@@ -1,0 +1,59 @@
+{
+    "name": "ballstatecber/datacenter-skeleton",
+    "description": "CBER Data Center Website Skeleton",
+    "homepage": "https://cberdata.org",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1",
+        "ballstatecber/datacenter-plugin-cakephp3": "dev-master",
+        "cakephp/cakephp": "^3.5",
+        "cakephp/migrations": "~1.0",
+        "cakephp/plugin-installer": "~1.0",
+        "josegonzalez/dotenv": "dev-master",
+        "mobiledetect/mobiledetectlib": "2.*",
+        "twbs/bootstrap": "3.3.7",
+        "xety/cake3-cookieauth": "1.*",
+        "friendsofcake/fixturize": "^1.0"
+    },
+    "require-dev": {
+        "cakephp/bake": "~1.1",
+        "cakephp/cakephp-codesniffer": "^3.0",
+        "cakephp/debug_kit": "~3.2",
+        "phpunit/phpunit": "*",
+        "psy/psysh": "@stable",
+        "dereuromark/cakephp-ide-helper": "^0.9.6"
+    },
+    "suggest": {
+        "markstory/asset_compress": "An asset compression plugin which provides file concatenation and a flexible filter system for preprocessing and minification."
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src",
+            "DataCenter\\": "./vendor/ballstatecber/datacenter-plugin-cakephp3/src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Test\\": "tests",
+            "Cake\\Test\\": "./vendor/cakephp/cakephp/tests",
+            "DataCenter\\Test\\": "./vendor/ballstatecber/datacenter-plugin-cakephp3/tests"
+        }
+    },
+    "scripts": {
+        "post-package-install": "DataCenter\\Console\\Installer::postUpdate",
+        "post-package-update": "DataCenter\\Console\\Installer::postUpdate",
+        "post-create-project-cmd": "DataCenter\\Console\\Installer::postInstall",
+        "post-install-cmd": "DataCenter\\Console\\Installer::postInstall",
+        "copy-vendor-files": "DataCenter\\Console\\Installer::copyVendorFiles",
+        "post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
+        "check": [
+            "@test",
+            "@cs-check"
+        ],
+        "cs-check": "phpcs --colors -p --standard=vendor/cakephp/cakephp-codesniffer/CakePHP ./src ./tests",
+        "cs-fix": "phpcbf --colors --standard=vendor/cakephp/cakephp-codesniffer/CakePHP ./src ./tests",
+        "test": "phpunit --colors=always"
+    },
+    "prefer-stable": true
+}

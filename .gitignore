@@ -1,0 +1,43 @@
+# CakePHP
+/vendor/*
+/tmp/*
+/logs/*
+
+# Node
+/node_modules/*
+
+# Testing coverage
+/webroot/coverage/*
+/build/logs/*
+
+#PhpStorm
+.idea/*
+
+# External tool builders
+.externalToolBuilders/
+
+# Composer
+composer.phar
+
+# Concatenated / minified JS files
+/webroot/js/script.concat.js
+/webroot/js/*.min.js
+
+# Environment variable definitions
+/config/.env
+/config/.env.production
+/config/.env.dev
+
+# Code coverage report
+/build/logs/clover.xml
+
+# Files copied from /vendor
+/webroot/fonts/glyphicons-halflings-*
+/webroot/android-chrome-*.png
+/webroot/apple-touch-icon.png
+/webroot/browserconfig.xml
+/webroot/favicon.ico
+/webroot/favicon-*.png
+/webroot/manifest.json
+/webroot/mstile-150x150.png
+/webroot/safari-pinned-tab.svg
