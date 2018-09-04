@@ -25,12 +25,7 @@ class RelativeHomeValuesTableTest extends TestCase
      */
     public $fixtures = [
         'app.relative_home_values',
-        'app.counties',
-        'app.states',
-        'app.scores',
-        'app.categories',
-        'app.sources',
-        'app.categories_sources'
+        'app.counties'
     ];
 
     /**
@@ -41,8 +36,8 @@ class RelativeHomeValuesTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('RelativeHomeValues') ? [] : ['className' => RelativeHomeValuesTable::class];
-        $this->RelativeHomeValues = TableRegistry::get('RelativeHomeValues', $config);
+        $config = TableRegistry::getTableLocator()->exists('RelativeHomeValues') ? [] : ['className' => RelativeHomeValuesTable::class];
+        $this->RelativeHomeValues = TableRegistry::getTableLocator()->get('RelativeHomeValues', $config);
     }
 
     /**

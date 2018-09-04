@@ -1,7 +1,6 @@
 <?php
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -15,6 +14,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\RelativeHomeValue newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\RelativeHomeValue[] newEntities(array $data, array $options = [])
  * @method \App\Model\Entity\RelativeHomeValue|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\RelativeHomeValue|bool saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\RelativeHomeValue patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\RelativeHomeValue[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\RelativeHomeValue findOrCreate($search, callable $callback = null, $options = [])
@@ -62,6 +62,16 @@ class RelativeHomeValuesTable extends Table
             ->boolean('is_neighboring')
             ->requirePresence('is_neighboring', 'create')
             ->notEmpty('is_neighboring');
+
+        $validator
+            ->boolean('is_ratio')
+            ->requirePresence('is_ratio', 'create')
+            ->notEmpty('is_ratio');
+
+        $validator
+            ->boolean('is_growth')
+            ->requirePresence('is_growth', 'create')
+            ->notEmpty('is_growth');
 
         $validator
             ->integer('year')

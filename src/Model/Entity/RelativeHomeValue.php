@@ -9,6 +9,8 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property int $county_id
  * @property bool $is_neighboring
+ * @property bool $is_ratio
+ * @property bool $is_growth
  * @property int $year
  * @property float $value
  * @property \Cake\I18n\FrozenTime $created
@@ -30,6 +32,8 @@ class RelativeHomeValue extends Entity
     protected $_accessible = [
         'county_id' => true,
         'is_neighboring' => true,
+        'is_ratio' => true,
+        'is_growth' => true,
         'year' => true,
         'value' => true,
         'created' => true,
