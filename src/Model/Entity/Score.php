@@ -11,6 +11,7 @@ use Cake\ORM\Entity;
  * @property bool $is_state_average
  * @property int $category_id
  * @property string $value
+ * @property int $year
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
@@ -34,6 +35,7 @@ class Score extends Entity
         'is_state_average' => true,
         'category_id' => true,
         'value' => true,
+        'year' => true,
         'created' => true,
         'modified' => true,
         'county' => true,

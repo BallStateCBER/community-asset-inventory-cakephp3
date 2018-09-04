@@ -22,6 +22,7 @@ class ScoresFixture extends TestFixture
         'is_state_average' => ['type' => 'boolean', 'length' => null, 'null' => false, 'default' => '0', 'comment' => '', 'precision' => null],
         'category_id' => ['type' => 'integer', 'length' => 10, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'value' => ['type' => 'string', 'length' => 20, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'year' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         '_constraints' => [
@@ -46,8 +47,9 @@ class ScoresFixture extends TestFixture
             'is_state_average' => 1,
             'category_id' => 1,
             'value' => 'Lorem ipsum dolor ',
-            'created' => '2018-08-31 20:04:22',
-            'modified' => '2018-08-31 20:04:22'
+            'year' => 1,
+            'created' => '2018-09-04 16:40:40',
+            'modified' => '2018-09-04 16:40:40'
         ],
     ];
 }

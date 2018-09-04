@@ -72,6 +72,11 @@ class ScoresTable extends Table
             ->requirePresence('value', 'create')
             ->notEmpty('value');
 
+        $validator
+            ->integer('year')
+            ->requirePresence('year', 'create')
+            ->notEmpty('year');
+
         return $validator;
     }
 
