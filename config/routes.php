@@ -18,7 +18,6 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-use Cake\Core\Plugin;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
 use Cake\Routing\Route\DashedRoute;
@@ -46,6 +45,7 @@ Router::defaultRouteClass(DashedRoute::class);
 Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/', ['controller' => 'Pages', 'action' => 'home']);
     $routes->connect('/sources', ['controller' => 'Pages', 'action' => 'sources']);
+    $routes->connect('/credits', ['controller' => 'Pages', 'action' => 'credits']);
 
     /**
      * Connect catchall routes for all controllers.

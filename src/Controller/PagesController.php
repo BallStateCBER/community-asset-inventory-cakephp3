@@ -38,7 +38,16 @@ class PagesController extends AppController
      *
      * @return void
      */
-    function sources() {
+    public function sources() {
         $this->set('titleForLayout', 'Data Sources and Methodology');
+    }
+
+    /**
+     * Credits page
+     *
+     * @return void
+     */
+    public function credits() {
+        $this->set('titleForLayout', 'Credits');
     }
 }

@@ -85,9 +85,13 @@
 </h3>
 
 <h3>
-    <a href="#credits" id="credits-link">
-        Credits
-    </a>
+    <?= $this->Html->link(
+        'Credits',
+        [
+            'controller' => 'Pages',
+            'action' => 'credits'
+        ]
+    ) ?>
 </h3>
 
 <ul id="extra_links">
