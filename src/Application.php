@@ -14,6 +14,7 @@
  */
 namespace App;
 
+use App\Command\ImportHomeValuesCommand;
 use Cake\Error\Middleware\ErrorHandlerMiddleware;
 use Cake\Http\BaseApplication;
 use Cake\Routing\Middleware\AssetMiddleware;
@@ -47,5 +48,20 @@ class Application extends BaseApplication
             ->add(RoutingMiddleware::class);
 
         return $middlewareQueue;
+    }
+
+    /**
+     * Defines the commands and subcommands in this application
+     *
+     * @param \Cake\Console\CommandCollection $commands Collection of commands
+     * @return \Cake\Console\CommandCollection
+     */
+    public function console($commands)
+    {
+        $commands->autoDiscover();
+
+        $commands->add('import-home-values', ImportHomeValuesCommand::class);
+
+        return $commands;
     }
 }
