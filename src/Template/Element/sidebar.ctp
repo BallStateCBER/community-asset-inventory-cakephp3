@@ -53,11 +53,13 @@
 </form>
 
 <h3>
-    <a href="#sources" id="sources-link">
-        Data Sources
-        <br />
-        and Methodology
-    </a>
+    <?= $this->Html->link(
+        'Data Sources and Methodology',
+        [
+            'controller' => 'Pages',
+            'action' => 'sources'
+        ]
+    ) ?>
 </h3>
 
 <h3>

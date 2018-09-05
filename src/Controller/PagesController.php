@@ -32,4 +32,13 @@ class PagesController extends AppController
     public function home()
     {
     }
+
+    /**
+     * Data sources and methodology page
+     *
+     * @return void
+     */
+    function sources() {
+        $this->set('titleForLayout', 'Data Sources and Methodology');
+    }
 }
