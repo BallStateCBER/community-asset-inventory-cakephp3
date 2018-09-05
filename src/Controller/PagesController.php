@@ -50,4 +50,13 @@ class PagesController extends AppController
     public function credits() {
         $this->set('titleForLayout', 'Credits');
     }
+
+    /**
+     * Frequently asked questions page
+     *
+     * @return void
+     */
+    public function faq() {
+        $this->set('titleForLayout', 'Frequently Asked Questions');
+    }
 }

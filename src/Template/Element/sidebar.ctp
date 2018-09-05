@@ -79,9 +79,13 @@
 </ul>
 
 <h3>
-    <a href="#faq" id="faq-link">
-        Frequently Asked Questions
-    </a>
+    <?= $this->Html->link(
+        'Frequently Asked Questions',
+        [
+            'controller' => 'Pages',
+            'action' => 'faq'
+        ]
+    ) ?>
 </h3>
 
 <h3>
