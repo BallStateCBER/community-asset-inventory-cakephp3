@@ -1,6 +1,8 @@
 <?php
 namespace App\Model\Table;
 
+use Cake\Database\Expression\QueryExpression;
+use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -103,5 +105,20 @@ class CategoriesTable extends Table
         $rules->add($rules->existsIn(['parent_id'], 'ParentCategories'));
 
         return $rules;
+    }
+
+    /**
+     * Custom finder for retrieving only root-level categories
+     *
+     * @param Query $query Cake ORM query
+     * @return Query
+     */
+    public function findParentCategories(Query $query)
+    {
+        return $query
+            ->where(function (QueryExpression $exp) {
+                return $exp->isNull('parent_id');
+            })
+            ->orderAsc('name');
     }
 }
