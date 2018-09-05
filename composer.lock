@@ -58,12 +58,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/BallStateCBER/datacenter-plugin-cakephp3.git",
-                "reference": "9e2160070c38c5b9f6f26474384aa96fc0ba927b"
+                "reference": "a42c7959a19f8cd7c9b8ff83449931957eb52a5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BallStateCBER/datacenter-plugin-cakephp3/zipball/9e2160070c38c5b9f6f26474384aa96fc0ba927b",
-                "reference": "9e2160070c38c5b9f6f26474384aa96fc0ba927b",
+                "url": "https://api.github.com/repos/BallStateCBER/datacenter-plugin-cakephp3/zipball/a42c7959a19f8cd7c9b8ff83449931957eb52a5d",
+                "reference": "a42c7959a19f8cd7c9b8ff83449931957eb52a5d",
                 "shasum": ""
             },
             "require": {
@@ -84,7 +84,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Ball State CBER DataCenter plugin for CakePHP 3",
-            "time": "2018-09-04T18:59:46+00:00"
+            "time": "2018-09-04T20:58:49+00:00"
         },
         {
             "name": "cakephp/cakephp",
