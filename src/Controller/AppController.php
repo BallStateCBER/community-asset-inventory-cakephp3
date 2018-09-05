@@ -15,7 +15,9 @@
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Cake\Database\Expression\QueryExpression;
 use Cake\Event\Event;
+use Cake\ORM\TableRegistry;
 use Cake\Utility\Text;
 
 /**
@@ -37,6 +39,7 @@ class AppController extends Controller
      * e.g. `$this->loadComponent('Security');`
      *
      * @return void
+     * @throws \Exception
      */
     public function initialize()
     {
@@ -63,17 +66,14 @@ class AppController extends Controller
     {
         $layout = $this->viewBuilder()->getLayout();
         if (!$layout || $layout == 'default') {
-            $parentCategories = []; // placeholder
-            $counties = []; // placeholder
-            $categorySlugs = [];
-            foreach ($parentCategories as $pcId => $pcName) {
-                $categorySlugs[] = Text::slug($pcName);
-            }
+            $categoriesTable = TableRegistry::getTableLocator()->get('Categories');
+            $parentCategories = $categoriesTable->find('parentCategories')->all();
+            $countiesTable = TableRegistry::getTableLocator()->get('Counties');
+            $counties = $countiesTable->find('indiana')->all();
             $this->set([
                 'sidebar' => [
                     'counties' => $counties,
-                    'parentCategories' => $parentCategories,
-                    'categorySlugs' => $categorySlugs
+                    'parentCategories' => $parentCategories
                 ]
             ]);
         }

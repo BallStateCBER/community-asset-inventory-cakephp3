@@ -47,6 +47,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/sources', ['controller' => 'Pages', 'action' => 'sources']);
     $routes->connect('/credits', ['controller' => 'Pages', 'action' => 'credits']);
     $routes->connect('/faq', ['controller' => 'Pages', 'action' => 'faq']);
+    $routes->connect('/category/:slug', ['controller' => 'Categories', 'action' => 'view'], ['pass' => ['slug']]);
 
     /**
      * Connect catchall routes for all controllers.

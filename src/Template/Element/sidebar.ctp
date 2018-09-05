@@ -3,8 +3,6 @@
      * @var \App\View\AppView $this
      * @var array $sidebar
      */
-
-    use Cake\Utility\Text;
     $this->Html->script('sidebar', ['block' => 'script']);
 ?>
 
@@ -18,11 +16,16 @@
     All Counties by Category
 </h3>
 <ul id="categories" class="unstyled">
-    <?php foreach ($sidebar['parentCategories'] as $pcId => $pcName): ?>
+    <?php foreach ($sidebar['parentCategories'] as $category): ?>
         <li>
-            <a href="#<?= Text::slug($pcName) ?>" id="showmap-<?= Text::slug($pcName) ?>">
-                <?= $pcName ?>
-            </a>
+            <?= $this->Html->link(
+                $category->name,
+                [
+                    'controller' => 'Categories',
+                    'action' => 'view',
+                    $category->slug
+                ]
+            ) ?>
         </li>
     <?php endforeach; ?>
 </ul>
@@ -41,8 +44,8 @@
             </option>
             <option value=""></option>
             <?php foreach ($sidebar['counties'] as $county): ?>
-                <option value="<?= $county['Location']['simplified'] ?>">
-                    <?= $county['Location']['name'] ?> County
+                <option value="<?= $county->simplified ?>">
+                    <?= $county->name ?> County
                 </option>
             <?php endforeach; ?>
         </select>

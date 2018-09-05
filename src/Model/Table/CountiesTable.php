@@ -1,6 +1,7 @@
 <?php
 namespace App\Model\Table;
 
+use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -110,5 +111,20 @@ class CountiesTable extends Table
         $rules->add($rules->existsIn(['state_id'], 'States'));
 
         return $rules;
+    }
+
+    /**
+     * Custom finder for retrieving only root-level categories
+     *
+     * @param Query $query Cake ORM query
+     * @return Query
+     */
+    public function findIndiana(Query $query)
+    {
+        $indianaStateId = 14;
+
+        return $query
+            ->where(['state_id' => 14])
+            ->orderAsc('name');
     }
 }
