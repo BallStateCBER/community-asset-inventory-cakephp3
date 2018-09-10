@@ -17,14 +17,18 @@
 </h3>
 <ul id="categories" class="unstyled">
     <?php foreach ($sidebar['parentCategories'] as $category): ?>
-        <li>
+        <?php
+            $url = \Cake\Routing\Router::url([
+                'controller' => 'Categories',
+                'action' => 'view',
+                $category->slug
+            ]);
+            $active = $this->request->getRequestTarget() == $url;
+        ?>
+        <li <?php if ($active): ?>class="selected"<?php endif; ?>>
             <?= $this->Html->link(
                 $category->name,
-                [
-                    'controller' => 'Categories',
-                    'action' => 'view',
-                    $category->slug
-                ]
+                $url
             ) ?>
         </li>
     <?php endforeach; ?>
