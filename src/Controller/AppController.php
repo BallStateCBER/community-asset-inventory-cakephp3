@@ -15,10 +15,9 @@
 namespace App\Controller;
 
 use Cake\Controller\Controller;
-use Cake\Database\Expression\QueryExpression;
 use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
-use Cake\Utility\Text;
+use Cake\Utility\Hash;
 
 /**
  * Application Controller
@@ -68,12 +67,14 @@ class AppController extends Controller
         if (!$layout || $layout == 'default') {
             $categoriesTable = TableRegistry::getTableLocator()->get('Categories');
             $parentCategories = $categoriesTable->find('parentCategories')->all();
+            $categorySlugs = Hash::extract($parentCategories->toArray(), '{n}.slug');
             $countiesTable = TableRegistry::getTableLocator()->get('Counties');
             $counties = $countiesTable->find('indiana')->all();
             $this->set([
                 'sidebar' => [
                     'counties' => $counties,
-                    'parentCategories' => $parentCategories
+                    'parentCategories' => $parentCategories,
+                    'categorySlugs' => $categorySlugs
                 ]
             ]);
         }
