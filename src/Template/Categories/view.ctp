@@ -15,7 +15,7 @@ foreach ($counties as $county) {
 	if (isset($scores['grade'][$county->id])) {
 		$grade = strtolower($scores['grade'][$county->id]);
 		$grade = str_replace(['-', '+'], '', $grade);
-		$inlineColorAssignments[] = "$('#in-map-$countyName').addClass('grade_$grade');";
+		$inlineColorAssignments[] = "$('#in-map-$countyName').addClass('grade-$grade');";
 	} else {
 		$index = $scores['index'][$county->id];
 		if ($index >= 115) {
@@ -29,7 +29,7 @@ foreach ($counties as $county) {
 		} else {
 			$indexGrade = 70;
 		}
-		$inlineColorAssignments[] = "$('#in-map-$countyName').addClass('index_$indexGrade');";
+		$inlineColorAssignments[] = "$('#in-map-$countyName').addClass('index-$indexGrade');";
 	}
 }
 $this->Html->script('category', ['block' => 'script']);
