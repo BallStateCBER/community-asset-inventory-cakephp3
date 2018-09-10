@@ -82,7 +82,7 @@ $this->Html->script('category', ['block' => 'script']);
                                     $this->Html->image($downloadOption['icon']),
                                     $downloadOption['displayed_type']
                                 ),
-                                array_merge(['type' => $downloadOption['type_param']], $urlParams),
+                                array_merge($urlParams, [$downloadOption['type_param']]),
                                 ['escape' => false]
                             ) ?>
                         </li>

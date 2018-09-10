@@ -29,6 +29,11 @@ use Cake\Utility\Hash;
  */
 class AppController extends Controller
 {
+    /**
+     * The year for which data is retrieved from the database
+     * @var int $dataYear
+     */
+    protected $dataYear = 2012;
 
     /**
      * Initialization hook method.

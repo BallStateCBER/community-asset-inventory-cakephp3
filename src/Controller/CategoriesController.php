@@ -4,8 +4,11 @@ namespace App\Controller;
 use App\Model\Entity\Category;
 use App\Model\Table\CategoriesTable;
 use App\Model\Table\CountiesTable;
+use App\Spreadsheet\CategorySpreadsheet;
 use Cake\Datasource\ResultSetInterface;
+use Cake\Http\Exception\BadRequestException;
 use Cake\Http\Response;
+use Cake\Utility\Hash;
 
 /**
  * Categories Controller
@@ -24,8 +27,6 @@ class CategoriesController extends AppController
      */
     public function view($slug)
     {
-        $year = 2012;
-
         /** @var Category $parentCategory */
         $parentCategory = $this->Categories
             ->find()
@@ -42,7 +43,7 @@ class CategoriesController extends AppController
             ]);
         }
 
-        $scores = $this->Categories->getScores($parentCategory->id, $year);
+        $scores = $this->Categories->getScores($parentCategory->id, $this->dataYear);
 
         $this->loadModel('Counties');
         $this->set([
@@ -51,29 +52,93 @@ class CategoriesController extends AppController
             'titleForLayout' => $parentCategory->name,
             'scores' => $scores,
             'urlParams' => [
-                'controller' => 'reports',
+                'controller' => 'Categories',
                 'action' => 'download',
-                'var_id' => $parentCategory->id
+                $parentCategory->id
             ],
-            'downloadOptions' => [
-                [
-                    'displayed_type' => 'CSV',
-                    'icon' => 'icons/document-excel-csv.png',
-                    'type_param' => 'csv'
-                ],
-                [
-                    'displayed_type' => 'Excel 5.0',
-                    'icon' => 'icons/document-excel-table.png',
-                    'type_param' => 'excel5'
-                ],
-                [
-                    'displayed_type' => 'Excel 2007',
-                    'icon' => 'icons/document-excel-table.png',
-                    'type_param' => 'excel2007'
-                ]
-            ]
+            'downloadOptions' => $this->getDownloadOptions()
         ]);
 
         return null;
+    }
+
+    /**
+     * Renders a spreadsheet download
+     *
+     * @param int|null $categoryId Parent category ID
+     * @param string|null $fileType Either excel2007 or csv
+     * @return void
+     * @throws \PHPExcel_Exception
+     */
+    public function download($categoryId = null, $fileType = null)
+    {
+        // Validate parameters
+        if (!$categoryId) {
+            throw new BadRequestException('No data category specified');
+        }
+        if (!$fileType) {
+            throw new BadRequestException('No file type specified');
+        }
+        $isValidFileType = in_array(
+            $fileType,
+            Hash::extract($this->getDownloadOptions(), '{n}.type_param')
+        );
+        if (!$isValidFileType) {
+            throw new BadRequestException('Invalid file type specified');
+        }
+
+        // Collect data
+        /** @var Category $parentCategory */
+        $parentCategory = $this->Categories
+            ->find()
+            ->where(['id' => $categoryId])
+            ->contain(['Sources'])
+            ->first();
+
+        $writerTypes = [
+            'excel2007' => 'Excel2007',
+            'csv' => 'CSV'
+        ];
+        $this->viewBuilder()->setLayout('spreadsheet');
+        $this->set([
+            'spreadsheet' => (new CategorySpreadsheet())->getSpreadsheet($parentCategory, $this->dataYear),
+            'writerType' => $writerTypes[$fileType]
+        ]);
+        $response = $this->response;
+
+        $extensions = [
+            'excel2007' => 'xlsx',
+            'csv' => 'csv'
+        ];
+        $extension = $extensions[$fileType];
+        $response = $response->withType($extension);
+        $filename = sprintf(
+            'CAIR - %s.%s',
+            str_replace(':', ' - ', $parentCategory->name),
+            $extension
+        );
+        $response = $response->withDownload($filename);
+        $this->response = $response;
+    }
+
+    /**
+     * Returns information about spreadsheet download options
+     *
+     * @return array
+     */
+    private function getDownloadOptions()
+    {
+        return [
+            [
+                'displayed_type' => 'CSV',
+                'icon' => 'icons/document-excel-csv.png',
+                'type_param' => 'csv'
+            ],
+            [
+                'displayed_type' => 'Excel (XLSX)',
+                'icon' => 'icons/document-excel-table.png',
+                'type_param' => 'excel2007'
+            ]
+        ];
     }
 }
