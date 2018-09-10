@@ -165,7 +165,6 @@ h2 {
         }
     }
 }
-
 #legend_grades {
     bottom: 0;
     margin: 0;
@@ -216,6 +215,31 @@ h2 {
     .index70 {
         background-color: @indexColor70;
     }
+}
+@gradeColorA: #CC553E;
+@gradeColorB: #E69F5A;
+@gradeColorC: #E0C95A;
+@gradeColorD: #85BEBF;
+@gradeColorF: #4B88AA;
+.grade-a {
+    background-color: @gradeColorA;
+    fill: @gradeColorA;
+}
+.grade-b {
+    background-color: @gradeColorB;
+    fill: @gradeColorB;
+}
+.grade-c {
+    background-color: @gradeColorC;
+    fill: @gradeColorC;
+}
+.grade-d {
+    background-color: @gradeColorD;
+    fill: @gradeColorD;
+}
+.grade-f {
+    background-color: @gradeColorF;
+    fill: @gradeColorF;
 }
 /* Prevents cursor from being able to drift into the tooltip and prevent it from disappearing */
 .qtip:hover {
