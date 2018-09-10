@@ -1,10 +1,12 @@
 <?php
 namespace App\Model\Table;
 
+use App\Model\Entity\Category;
 use Cake\Database\Expression\QueryExpression;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\Utility\Hash;
 use Cake\Validation\Validator;
 
 /**
@@ -126,5 +128,44 @@ class CategoriesTable extends Table
                 return $exp->isNull('parent_id');
             })
             ->orderAsc('name');
+    }
+
+    /**
+     * Returns an array of grade scores (if available) and index scores for each county, keyed by county ID
+     *
+     * @param int $parentCategoryId ID of parent category to the relevant Grade and Index categories
+     * @param int $year Year to pull scores from
+     * @return array
+     */
+    public function getScores($parentCategoryId, $year)
+    {
+        $scores = [
+            'grade' => [],
+            'index' => []
+        ];
+        foreach (array_keys($scores) as $categoryName) {
+            /** @var Category $childCategory */
+            $childCategory = $this->find()
+                ->where([
+                    'name' => ucwords($categoryName),
+                    'parent_id' => $parentCategoryId
+                ])
+                ->contain([
+                    'Scores' => function (Query $query) use ($year) {
+                        return $query
+                            ->select(['category_id', 'county_id', 'value'])
+                            ->where([
+                                'is_state_average' => false,
+                                'year' => $year
+                            ]);
+                    }
+                ])
+                ->first();
+            $scores[$categoryName] = $childCategory
+                ? Hash::combine($childCategory->scores, '{n}.county_id', '{n}.value')
+                : null;
+        }
+
+        return $scores;
     }
 }
