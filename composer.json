@@ -15,7 +15,8 @@
         "mobiledetect/mobiledetectlib": "2.*",
         "twbs/bootstrap": "3.3.7",
         "xety/cake3-cookieauth": "1.*",
-        "friendsofcake/fixturize": "^1.0"
+        "friendsofcake/fixturize": "^1.0",
+        "phpoffice/phpexcel": "^1.8"
     },
     "require-dev": {
         "cakephp/bake": "~1.1",
