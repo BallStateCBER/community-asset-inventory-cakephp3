@@ -1,9 +1,11 @@
 <?php
 namespace App\Model\Table;
 
+use App\Model\Entity\Score;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
 
 /**
@@ -126,5 +128,40 @@ class CountiesTable extends Table
         return $query
             ->where(['state_id' => $indianaStateId])
             ->orderAsc('name');
+    }
+
+    /**
+     * Returns an array of this county's grade scores (if available) and index scores for each category
+     *
+     * @param int $countyId ID of county record
+     * @param int $year Year to pull scores from
+     * @return array
+     */
+    public function getScores($countyId, $year)
+    {
+        $scores = [];
+
+        $scoresTable = TableRegistry::getTableLocator()->get('Scores');
+        $categoriesTable = TableRegistry::getTableLocator()->get('Categories');
+        $categories = $categoriesTable
+            ->find('threaded')
+            ->toArray();
+        foreach ($categories as $category) {
+            foreach ($category->children as $childCategory) {
+                /** @var Score $score */
+                $score = $scoresTable->find()
+                    ->where([
+                        'category_id' => $childCategory->id,
+                        'county_id' => $countyId,
+                        'year' => $year
+                    ])
+                    ->first();
+                $scores[$category->name][$childCategory->name] = $score
+                    ? $score->value
+                    : null;
+            }
+        }
+
+        return $scores;
     }
 }

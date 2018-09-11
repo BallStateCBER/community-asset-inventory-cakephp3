@@ -36,16 +36,11 @@ function showPage(page) {
 }
 
 function setupSidebar() {
-  $('#select-county').change(function() {
-    if ($('#select-county').val()) {
-      showFullReport();
-    }
-  });
-  $('#select-county-button').click(function() {
-    if ($('#select-county').val()) {
-      showFullReport();
-    } else {
-      window.alert('Please select a county from the drop-down menu');
+  $('#select-county-button').click(function(event) {
+    event.preventDefault();
+    const countySlug = $('#select-county').find('option:selected').val();
+    if (countySlug) {
+      window.location.href = '/county/' + countySlug;
     }
   });
   $('#sources-link').click(function() {

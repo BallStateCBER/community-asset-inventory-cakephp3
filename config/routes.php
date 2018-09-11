@@ -53,6 +53,11 @@ Router::scope('/', function (RouteBuilder $routes) {
         ['controller' => 'Categories', 'action' => 'download'],
         ['pass' => ['categoryId', 'fileType']]
     );
+    $routes->connect(
+        '/county/:slug',
+        ['controller' => 'Counties', 'action' => 'view'],
+        ['pass' => ['slug']]
+    );
 
     /**
      * Connect catchall routes for all controllers.
