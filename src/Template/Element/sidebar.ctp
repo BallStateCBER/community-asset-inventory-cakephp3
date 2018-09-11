@@ -7,7 +7,7 @@
 ?>
 
 <h3>
-    <a href="#home" id="home-link">
+    <a href="/">
         Home
     </a>
 </h3>
@@ -120,5 +120,4 @@
 
 <?php $this->append('buffered'); ?>
     setupSidebar();
-    setupShowMap(<?= json_encode($sidebar['categorySlugs']) ?>);
 <?php $this->end(); ?>

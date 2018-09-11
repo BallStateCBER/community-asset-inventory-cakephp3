@@ -4,8 +4,6 @@
      * @var array $sidebar
      */
 
-    use Cake\Utility\Text;
-
     $this->extend('DataCenter.default');
     $this->assign('sidebar', $this->element('sidebar'));
     $this->Html->css('/DataCenter/css/jquery.qtip.min.css', ['block' => true]);
@@ -13,24 +11,7 @@
     $this->Html->script('/DataCenter/js/jquery.svg.js', ['block' => 'script']);
     $this->Html->script('/DataCenter/js/jquery.svgdom.js', ['block' => 'script']);
     $this->Html->script('/DataCenter/js/jquery.qtip.js', ['block' => 'script']);
-
-    /* Tell Javascript what the counties and categories are
-     * so that the processHash() function can interpret the hash fragment correctly */
-    $jsCategoryDefinitions = array();
-    foreach ($sidebar['parentCategories'] as $pcId => $pcName) {
-        $jsCategoryDefinitions[] = Text::slug($pcName);
-    }
-    $jsCountyDefinitions = array();
-    foreach ($sidebar['counties'] as $county) {
-        $jsCountyDefinitions[] = $county['Location']['simplified'];
-    }
 ?>
-
-<?php $this->append('buffered'); ?>
-    var categories = <?= json_encode($jsCategoryDefinitions) ?>;
-    var counties = <?= json_encode($jsCountyDefinitions) ?>;
-    processHash(categories, counties);
-<?php $this->end(); ?>
 
 <?php $this->start('subsite_title'); ?>
     <h1 id="subsite_title" class="max_width">
