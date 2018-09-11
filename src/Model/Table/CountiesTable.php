@@ -124,7 +124,7 @@ class CountiesTable extends Table
         $indianaStateId = 14;
 
         return $query
-            ->where(['state_id' => 14])
+            ->where(['state_id' => $indianaStateId])
             ->orderAsc('name');
     }
 }
