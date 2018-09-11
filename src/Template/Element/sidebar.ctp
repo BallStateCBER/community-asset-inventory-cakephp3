@@ -13,7 +13,7 @@
 </h3>
 
 <h3>
-    All Counties by Category
+    Categories
 </h3>
 <ul id="categories" class="unstyled">
     <?php foreach ($sidebar['parentCategories'] as $category): ?>
@@ -35,7 +35,7 @@
 </ul>
 
 <h3 id="all-categories-header">
-    All Categories by County
+    Indiana Counties
 </h3>
 <form class="form-inline">
     <div class="form-group">
@@ -60,17 +60,7 @@
 </form>
 
 <h3>
-    <?= $this->Html->link(
-        'Data Sources and Methodology',
-        [
-            'controller' => 'Pages',
-            'action' => 'sources'
-        ]
-    ) ?>
-</h3>
-
-<h3>
-    Download
+    Download Report
 </h3>
 <ul class="unstyled">
     <li>
@@ -86,24 +76,38 @@
 </ul>
 
 <h3>
-    <?= $this->Html->link(
-        'Frequently Asked Questions',
-        [
-            'controller' => 'Pages',
-            'action' => 'faq'
-        ]
-    ) ?>
+    More Information
 </h3>
 
-<h3>
-    <?= $this->Html->link(
-        'Credits',
-        [
-            'controller' => 'Pages',
-            'action' => 'credits'
-        ]
-    ) ?>
-</h3>
+<ul class="unstyled">
+    <li>
+        <?= $this->Html->link(
+            'Data Sources and Methodology',
+            [
+                'controller' => 'Pages',
+                'action' => 'sources'
+            ]
+        ) ?>
+    </li>
+    <li>
+        <?= $this->Html->link(
+            'Frequently Asked Questions',
+            [
+                'controller' => 'Pages',
+                'action' => 'faq'
+            ]
+        ) ?>
+    </li>
+    <li>
+        <?= $this->Html->link(
+            'Credits',
+            [
+                'controller' => 'Pages',
+                'action' => 'credits'
+            ]
+        ) ?>
+    </li>
+</ul>
 
 <ul id="extra_links">
     <li>
