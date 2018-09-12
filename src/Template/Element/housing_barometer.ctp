@@ -2,6 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var array $chartData
+ * @var array $colors
  * @var array $rhvs
  * @var int $maxGrowth
  * @var int $maxRatio
@@ -20,6 +21,7 @@
 
         let options = {
           title: 'Relative Home Values',
+          colors: <?= json_encode(array_values($colors)) ?>,
           hAxis: {
             title: 'Home value growth (2010 to 2017)',
             minValue: <?= $minGrowth ?>,
@@ -38,7 +40,9 @@
               max: <?= $maxRatio ?>,
             }
           },
-          legend: 'none'
+          legend: {
+            position: 'bottom'
+          }
         };
 
         let chart = new google.visualization.ScatterChart(document.getElementById('chart-container'));

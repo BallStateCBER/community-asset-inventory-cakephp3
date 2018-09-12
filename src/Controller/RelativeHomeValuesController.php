@@ -31,43 +31,66 @@ class RelativeHomeValuesController extends AppController
 
         $chartData = [
             [
-                'Growth',
-                'Ratio',
-                [
-                    'type' => 'string',
-                    'role' => 'tooltip'
-                ],
-                [
-                    'type' => 'string',
-                    'role' => 'style'
-                ]
+                'Growth value',
+                ['label' => 'Ideal', 'type' => 'number'],
+                ['type' => 'string', 'role' => 'tooltip'],
+                ['label' => 'Growth', 'type' => 'number'],
+                ['type' => 'string', 'role' => 'tooltip'],
+                ['label' => 'Warning', 'type' => 'number'],
+                ['type' => 'string', 'role' => 'tooltip'],
+                ['label' => 'Bad', 'type' => 'number'],
+                ['type' => 'string', 'role' => 'tooltip'],
+                ['type' => 'string', 'role' => 'style']
             ],
         ];
         $countyNames = array_keys($rhvs['counties']['ratio']);
+        $columns = [
+            'ideal' => 1,
+            'growth' => 3,
+            'warning' => 5,
+            'bad' => 7
+        ];
         foreach ($countyNames as $countyName) {
             foreach (['counties', 'neighboring'] as $subject) {
                 $growth = $rhvs[$subject]['growth'][$countyName];
                 $ratio = $rhvs[$subject]['ratio'][$countyName];
-                $color = $this->getColor($growth, $ratio);
-                $chartData[] = [
+                $tooltip = $subject == 'counties'
+                    ? "$countyName County"
+                    : "Counties neighboring $countyName County";
+                $strokeColor = $this->getColor($growth, $ratio);
+                $fillColor = $subject == 'neighboring' ? '#ffffff' : $strokeColor;
+                $style = sprintf(
+                    'point {size: 4; shape-type: circle; stroke-color: %s; fill-color: %s;}',
+                    $strokeColor,
+                    $fillColor
+                );
+                $point = [
                     $growth,
-                    $ratio,
-                    $subject == 'counties'
-                        ? "$countyName County"
-                        : "Counties neighboring $countyName County",
-                    sprintf(
-                        'point {size: 4; shape-type: circle; stroke-color: %s; fill-color: %s;}',
-                        $color,
-                        $subject == 'neighboring'
-                            ? '#ffffff'
-                            : $color
-                    )
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    $style
                 ];
+
+                // Add ratio to correct data column
+                $status = $this->getStatus($growth, $ratio);
+                $valueCol = $columns[$status];
+                $point[$valueCol] = (float)$ratio;
+                $tooltipCol = $valueCol + 1;
+                $point[$tooltipCol] = $tooltip;
+
+                $chartData[] = $point;
             }
         }
 
         $this->set([
             'chartData' => $chartData,
+            'colors' => $this->getColors(),
             'maxGrowth' => $this->RelativeHomeValues->getMaxValue('growth'),
             'maxRatio' => $this->RelativeHomeValues->getMaxValue('ratio'),
             'minGrowth' => $this->RelativeHomeValues->getMinValue('growth'),
@@ -105,6 +128,24 @@ class RelativeHomeValuesController extends AppController
     }
 
     /**
+     * Returns the ideal/growth/warning/bad status of a given set of values
+     *
+     * @param float $growth Housing value growth value
+     * @param float $ratio County to state housing value ratio
+     * @return string
+     */
+    private function getStatus($growth, $ratio)
+    {
+        $stateGrowth = 0.084;
+
+        if ($growth <= $stateGrowth) {
+            return $ratio >= 1 ? 'warning' : 'bad';
+        }
+
+        return $ratio >= 1 ? 'ideal' : 'growth';
+    }
+
+    /**
      * Returns the hex code for the color that a county with the given values should be displayed in
      *
      * @param float $growth Housing value growth value
@@ -114,17 +155,9 @@ class RelativeHomeValuesController extends AppController
     private function getColor($growth, $ratio)
     {
         $colors = $this->getColors();
-        $stateGrowth = 0.084;
+        $status = $this->getStatus($growth, $ratio);
 
-        if ($growth <= $stateGrowth) {
-            return $ratio >= 1
-                ? $colors['warning']
-                : $colors['bad'];
-        }
-
-        return $ratio >= 1
-            ? $colors['ideal']
-            : $colors['growth'];
+        return $colors[$status];
     }
 
 
@@ -136,10 +169,10 @@ class RelativeHomeValuesController extends AppController
     private function getColors()
     {
         return [
-            'warning' => '#ff9900',
-            'bad' => '#dc3912',
             'ideal' => '#109618',
-            'growth' => '#3366cc'
+            'growth' => '#3366cc',
+            'warning' => '#ff9900',
+            'bad' => '#dc3912'
         ];
     }
 }
