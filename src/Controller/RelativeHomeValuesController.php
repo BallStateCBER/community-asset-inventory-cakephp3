@@ -96,6 +96,7 @@ class RelativeHomeValuesController extends AppController
             'minGrowth' => $this->RelativeHomeValues->getMinValue('growth'),
             'minRatio' => $this->RelativeHomeValues->getMinValue('ratio'),
             'rhvs' => $rhvs,
+            'stateGrowthValue' => $this->getStateGrowthValue(),
             'titleForLayout' => 'Relative Home Values'
         ]);
     }
@@ -136,13 +137,21 @@ class RelativeHomeValuesController extends AppController
      */
     private function getStatus($growth, $ratio)
     {
-        $stateGrowth = 0.084;
-
-        if ($growth <= $stateGrowth) {
+        if ($growth <= $this->getStateGrowthValue()) {
             return $ratio >= 1 ? 'warning' : 'bad';
         }
 
         return $ratio >= 1 ? 'ideal' : 'growth';
+    }
+
+    /**
+     * Returns the state average home value growth
+     *
+     * @return float
+     */
+    private function getStateGrowthValue()
+    {
+        return 0.084;
     }
 
     /**

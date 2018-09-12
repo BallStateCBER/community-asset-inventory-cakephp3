@@ -4,6 +4,7 @@
  * @var array $chartData
  * @var array $colors
  * @var array $rhvs
+ * @var float $stateGrowthValue
  * @var int $maxGrowth
  * @var int $maxRatio
  * @var int $minGrowth
@@ -29,7 +30,8 @@
             viewWindow: {
               min: <?= $minGrowth ?>,
               max: <?= $maxGrowth ?>,
-            }
+            },
+            baseline: <?= $stateGrowthValue ?>
           },
           vAxis: {
             title: 'County home value to state home value ratio',
@@ -38,7 +40,8 @@
             viewWindow: {
               min: <?= $minRatio ?>,
               max: <?= $maxRatio ?>,
-            }
+            },
+            baseline: 1
           },
           legend: {
             position: 'bottom'
