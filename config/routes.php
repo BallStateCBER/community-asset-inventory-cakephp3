@@ -48,6 +48,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/credits', ['controller' => 'Pages', 'action' => 'credits']);
     $routes->connect('/faq', ['controller' => 'Pages', 'action' => 'faq']);
     $routes->connect('/category/:slug', ['controller' => 'Categories', 'action' => 'view'], ['pass' => ['slug']]);
+    $routes->connect('/category/housing-barometer', ['controller' => 'RelativeHomeValues', 'action' => 'index']);
     $routes->connect(
         '/download/:category/:fileType',
         ['controller' => 'Categories', 'action' => 'download'],

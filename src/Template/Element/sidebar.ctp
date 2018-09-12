@@ -32,6 +32,16 @@
             ) ?>
         </li>
     <?php endforeach; ?>
+    <?php
+        $url = \Cake\Routing\Router::url([
+            'controller' => 'RelativeHomeValues',
+            'action' => 'index'
+        ]);
+        $active = $this->request->getRequestTarget() == $url;
+    ?>
+    <li <?php if ($active): ?>class="selected"<?php endif; ?>>
+        <?= $this->Html->link('Housing Barometer', $url) ?>
+    </li>
 </ul>
 
 <h3 id="all-categories-header">
