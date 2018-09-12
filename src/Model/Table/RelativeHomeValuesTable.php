@@ -99,4 +99,40 @@ class RelativeHomeValuesTable extends Table
 
         return $rules;
     }
+
+    /**
+     * Returns the minimum value for the specified measurement type
+     *
+     * @param string $type Either growth or ratio
+     * @return float
+     */
+    public function getMinValue($type)
+    {
+        $query = $this->find();
+        $results = $query
+            ->select(['min' => $query->func()->min('value')])
+            ->where(["is_$type" => true])
+            ->first()
+            ->toArray();
+
+        return $results['min'];
+    }
+
+    /**
+     * Returns the maximum value for the specified measurement type
+     *
+     * @param string $type Either growth or ratio
+     * @return float
+     */
+    public function getMaxValue($type)
+    {
+        $query = $this->find();
+        $results = $query
+            ->select(['max' => $query->func()->max('value')])
+            ->where(["is_$type" => true])
+            ->first()
+            ->toArray();
+
+        return $results['max'];
+    }
 }
