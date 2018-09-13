@@ -87,7 +87,6 @@ class CategorySpreadsheet
                 ->nextRow();
         }
 
-
         $spreadsheet
             ->setCellWidth()
             ->selectFirstSheet();
