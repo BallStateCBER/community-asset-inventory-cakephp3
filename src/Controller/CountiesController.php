@@ -3,12 +3,14 @@ namespace App\Controller;
 
 use App\Model\Entity\County;
 use App\Model\Table\CountiesTable;
+use App\Model\Table\RelativeHomeValuesTable;
 use Cake\ORM\TableRegistry;
 
 /**
  * Class CountiesController
  * @package App\Controller
  * @property CountiesTable $Counties
+ * @property RelativeHomeValuesTable $RelativeHomeValues
  */
 class CountiesController extends AppController
 {
@@ -31,6 +33,8 @@ class CountiesController extends AppController
             ->all();
         /** @var CountiesTable $countiesTable */
         $countiesTable = TableRegistry::getTableLocator()->get('Counties');
+        $this->loadModel('RelativeHomeValues');
+        $this->set($this->RelativeHomeValues->getVarsForScatterPlot($county->id));
         $this->set([
             'county' => $county,
             'categories' => $categories,

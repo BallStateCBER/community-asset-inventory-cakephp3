@@ -143,12 +143,13 @@ class RelativeHomeValuesTable extends Table
      *
      * @param bool $isNeighboring True if value is only for neighboring counties of each county
      * @param string $type Either ratio or growth
+     * @param null|int $countyId County ID, or null for all counties
      * @return array
      */
-    private function getResults($isNeighboring, $type)
+    private function getResults($isNeighboring, $type, $countyId = null)
     {
         $year = 2017;
-        $results = $this->find()
+        $query = $this->find()
             ->where([
                 'year' => $year,
                 'is_neighboring' => $isNeighboring,
@@ -159,8 +160,11 @@ class RelativeHomeValuesTable extends Table
                 'Counties' => function (Query $q) {
                     return $q->select(['id', 'name']);
                 }
-            ])
-            ->toArray();
+            ]);
+        if ($countyId) {
+            $query->where(['county_id' => $countyId]);
+        }
+        $results = $query->toArray();
 
         return Hash::combine($results, '{n}.county.name', '{n}.value');
     }
@@ -233,8 +237,8 @@ class RelativeHomeValuesTable extends Table
         $rhvs = [];
 
         foreach (['ratio', 'growth'] as $type) {
-            $rhvs['counties'][$type] = $this->getResults(false, $type);
-            $rhvs['neighboring'][$type] = $this->getResults(true, $type);
+            $rhvs['counties'][$type] = $this->getResults(false, $type, $countyId);
+            $rhvs['neighboring'][$type] = $this->getResults(true, $type, $countyId);
         }
 
         $chartData = [

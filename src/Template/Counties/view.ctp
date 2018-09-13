@@ -18,3 +18,5 @@
 
     <?= $this->element('county_table') ?>
 </div>
+
+<?= $this->element('housing_barometer') ?>
