@@ -15,4 +15,4 @@
 </h1>
 
 <?= $this->element('load_google_charts') ?>
-<?= $this->element('housing_barometer') ?>
+<?= $this->element('housing_barometer_scatter') ?>
