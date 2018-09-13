@@ -21,7 +21,7 @@ class RelativeHomeValuesController extends AppController
     {
         $this->set($this->RelativeHomeValues->getVarsForScatterPlot());
         $this->set([
-            'titleForLayout' => 'Relative Home Values'
+            'titleForLayout' => 'Housing Value Barometer'
         ]);
     }
 }

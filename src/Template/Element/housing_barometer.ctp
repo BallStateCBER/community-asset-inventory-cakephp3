@@ -21,7 +21,7 @@
         let data = google.visualization.arrayToDataTable(<?= json_encode($chartData) ?>);
 
         let options = {
-          title: 'Relative Home Values',
+          title: 'Housing Value Barometer',
           colors: <?= json_encode(array_values($colors)) ?>,
           hAxis: {
             title: 'Home value growth (2010 to 2017)',
