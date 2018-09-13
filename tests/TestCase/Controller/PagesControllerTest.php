@@ -23,6 +23,16 @@ use Cake\TestSuite\IntegrationTestCase;
 class PagesControllerTest extends IntegrationTestCase
 {
     /**
+     * Fixtures
+     *
+     * @var array
+     */
+    public $fixtures = [
+        'app.categories',
+        'app.counties'
+    ];
+
+    /**
      * setUp method
      *
      * @return void
