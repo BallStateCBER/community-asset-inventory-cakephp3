@@ -21,8 +21,11 @@
         let data = google.visualization.arrayToDataTable(<?= json_encode($chartData) ?>);
 
         let options = {
-          title: 'Housing Value Barometer',
           colors: <?= json_encode(array_values($colors)) ?>,
+          chartArea: {
+            height: '80%',
+            top: 15
+          },
           hAxis: {
             title: 'Home value growth (2010 to 2017)',
             minValue: <?= $minGrowth ?>,
