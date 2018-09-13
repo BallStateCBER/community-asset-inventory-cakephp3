@@ -34,7 +34,7 @@ $intermediateColor = $barometerStatus == 'growth' ? $colors['growth'] : $colors[
           yellowTo: 5,
           greenFrom: 5,
           greenTo: 7,
-          majorTicks: ['Bad', '', 'Ideal'],
+          majorTicks: ['Bad', '', '', 'Ideal'],
           minorTicks: 3,
 
           max: 7,
