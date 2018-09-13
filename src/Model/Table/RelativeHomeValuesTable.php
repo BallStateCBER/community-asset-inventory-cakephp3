@@ -278,8 +278,10 @@ class RelativeHomeValuesTable extends Table
                     : "Counties neighboring $countyName County";
                 $strokeColor = $this->getColor($growth, $ratio);
                 $fillColor = $subject == 'neighboring' ? '#ffffff' : $strokeColor;
+                $pointSize = $countyId ? 12 : 4;
                 $style = sprintf(
-                    'point {size: 4; shape-type: circle; stroke-color: %s; fill-color: %s;}',
+                    'point {size: %s; shape-type: circle; stroke-color: %s; fill-color: %s;}',
+                    $pointSize,
                     $strokeColor,
                     $fillColor
                 );
