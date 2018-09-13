@@ -36,6 +36,7 @@ class CountiesController extends AppController
         $this->loadModel('RelativeHomeValues');
         $this->set($this->RelativeHomeValues->getVarsForScatterPlot($county->id));
         $this->set([
+            'barometerStatus' => $this->RelativeHomeValues->getStatusForCounty($county->id),
             'county' => $county,
             'categories' => $categories,
             'scores' => $countiesTable->getScores($county->id, $this->dataYear),

@@ -215,7 +215,7 @@ class RelativeHomeValuesTable extends Table
      *
      * @return array
      */
-    private function getColors()
+    public function getColors()
     {
         return [
             'ideal' => '#109618',
@@ -324,5 +324,21 @@ class RelativeHomeValuesTable extends Table
             'rhvs' => $rhvs,
             'stateGrowthValue' => $this->getStateGrowthValue()
         ];
+    }
+
+    /**
+     * Returns a housing value barometer status (ideal, growth, warning, or bad) for the specified county
+     *
+     * @param int $countyId County ID
+     * @return string
+     */
+    public function getStatusForCounty($countyId)
+    {
+        $results = $this->getResults(false, 'growth', $countyId);
+        $growth = array_pop($results);
+        $results = $this->getResults(false, 'ratio', $countyId);
+        $ratio = array_pop($results);
+
+        return $this->getStatus($growth, $ratio);
     }
 }

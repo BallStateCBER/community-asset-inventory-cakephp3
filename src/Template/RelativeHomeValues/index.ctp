@@ -1,12 +1,6 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var array $chartData
- * @var array $rhvs
- * @var int $maxGrowth
- * @var int $maxRatio
- * @var int $minGrowth
- * @var int $minRatio
  */
 ?>
 

@@ -13,9 +13,9 @@
 ?>
 <?php $this->append('script'); ?>
     <script type="text/javascript">
-      google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(drawScatter);
 
-      function drawChart() {
+      function drawScatter() {
         let data = google.visualization.arrayToDataTable(<?= json_encode($chartData) ?>);
 
         let options = {
@@ -49,11 +49,11 @@
           }
         };
 
-        let chart = new google.visualization.ScatterChart(document.getElementById('chart-container'));
+        let chart = new google.visualization.ScatterChart(document.getElementById('scatter-container'));
 
         chart.draw(data, options);
       }
     </script>
 <?php $this->end(); ?>
 
-<div id="chart-container" style="max-width: 720px; height: 500px;"></div>
+<div id="scatter-container" style="max-width: 720px; height: 500px;"></div>

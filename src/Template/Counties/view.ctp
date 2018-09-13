@@ -22,4 +22,5 @@
 <h2>
     Housing Value Barometer
 </h2>
+<?= $this->element('housing_barometer_gauge') ?>
 <?= $this->element('housing_barometer_scatter') ?>
