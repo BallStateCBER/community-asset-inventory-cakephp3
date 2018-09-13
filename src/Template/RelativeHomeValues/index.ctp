@@ -14,4 +14,5 @@
     Housing Value Barometer for All Counties
 </h1>
 
+<?= $this->element('load_google_charts') ?>
 <?= $this->element('housing_barometer') ?>

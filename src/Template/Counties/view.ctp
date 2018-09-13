@@ -5,7 +5,7 @@
  * @var \App\Model\Entity\Category[] $categories
  */
 ?>
-
+<?= $this->element('load_google_charts') ?>
 <div id="full-report">
     <h2>
         <?= $county->name ?> County's Full Asset Inventory Report
