@@ -11,7 +11,7 @@
 ?>
 
 <h1>
-    Housing Barometer for All Counties
+    Housing Value Barometer for All Counties
 </h1>
 
 <?= $this->element('housing_barometer') ?>
