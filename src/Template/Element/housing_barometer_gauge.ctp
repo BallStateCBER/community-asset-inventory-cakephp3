@@ -5,13 +5,13 @@
  * @var string $barometerStatus
  */
 $gaugeValues = [
-    'ideal' => 6,
-    'growth' => 4,
+    'growing' => 6,
+    'recovering' => 4,
     'warning' => 4,
-    'bad' => 2
+    'distressed' => 2
 ];
 $gaugeValue = $gaugeValues[$barometerStatus];
-$intermediateColor = $barometerStatus == 'growth' ? $colors['growth'] : $colors['warning'];
+$intermediateColor = $barometerStatus == 'recovering' ? $colors['recovering'] : $colors['warning'];
 ?>
 <?php $this->append('script'); ?>
     <script type="text/javascript">
@@ -34,7 +34,7 @@ $intermediateColor = $barometerStatus == 'growth' ? $colors['growth'] : $colors[
           yellowTo: 5,
           greenFrom: 5,
           greenTo: 7,
-          majorTicks: ['Bad', '', '', 'Ideal'],
+          majorTicks: ['-', '', '', '+'],
           minorTicks: 3,
 
           max: 7,
@@ -48,4 +48,4 @@ $intermediateColor = $barometerStatus == 'growth' ? $colors['growth'] : $colors[
     </script>
 <?php $this->end(); ?>
 
-<div id="gauge-container" style="width: 400px; height: 120px;"></div>
+<div id="gauge-container"></div>

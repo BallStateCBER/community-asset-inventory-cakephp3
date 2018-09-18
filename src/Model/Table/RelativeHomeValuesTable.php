@@ -170,7 +170,7 @@ class RelativeHomeValuesTable extends Table
     }
 
     /**
-     * Returns the ideal/growth/warning/bad status of a given set of values
+     * Returns the growing/recovering/warning/distressed status of a given set of values
      *
      * @param float $growth Housing value growth value
      * @param float $ratio County to state housing value ratio
@@ -179,10 +179,10 @@ class RelativeHomeValuesTable extends Table
     private function getStatus($growth, $ratio)
     {
         if ($growth <= $this->getStateGrowthValue()) {
-            return $ratio >= 1 ? 'warning' : 'bad';
+            return $ratio >= 1 ? 'warning' : 'distressed';
         }
 
-        return $ratio >= 1 ? 'ideal' : 'growth';
+        return $ratio >= 1 ? 'growing' : 'recovering';
     }
 
     /**
@@ -218,10 +218,10 @@ class RelativeHomeValuesTable extends Table
     public function getColors()
     {
         return [
-            'ideal' => '#109618',
-            'growth' => '#3366cc',
+            'growing' => '#109618',
+            'recovering' => '#3366cc',
             'warning' => '#ff9900',
-            'bad' => '#dc3912'
+            'distressed' => '#dc3912'
         ];
     }
 
@@ -245,11 +245,11 @@ class RelativeHomeValuesTable extends Table
             [
                 'Growth value',
 
-                ['label' => 'Ideal', 'type' => 'number'],
+                ['label' => 'Growing', 'type' => 'number'],
                 ['type' => 'string', 'role' => 'tooltip'],
                 ['type' => 'string', 'role' => 'style'],
 
-                ['label' => 'Growth', 'type' => 'number'],
+                ['label' => 'Recovering', 'type' => 'number'],
                 ['type' => 'string', 'role' => 'tooltip'],
                 ['type' => 'string', 'role' => 'style'],
 
@@ -257,17 +257,17 @@ class RelativeHomeValuesTable extends Table
                 ['type' => 'string', 'role' => 'tooltip'],
                 ['type' => 'string', 'role' => 'style'],
 
-                ['label' => 'Bad', 'type' => 'number'],
+                ['label' => 'Distressed', 'type' => 'number'],
                 ['type' => 'string', 'role' => 'tooltip'],
                 ['type' => 'string', 'role' => 'style']
             ],
         ];
         $countyNames = array_keys($rhvs['counties']['ratio']);
         $columns = [
-            'ideal' => 1,
-            'growth' => 4,
+            'growing' => 1,
+            'recovering' => 4,
             'warning' => 7,
-            'bad' => 10
+            'distressed' => 10
         ];
         foreach ($countyNames as $countyName) {
             foreach (['counties', 'neighboring'] as $subject) {
@@ -307,7 +307,7 @@ class RelativeHomeValuesTable extends Table
                     null,
                 ];
 
-                // Add values to columns corresponding to ideal/warning/etc. categories
+                // Add values to columns corresponding to growing/warning/etc. categories
                 $status = $this->getStatus($growth, $ratio);
                 $valueCol = $columns[$status];
                 $point[$valueCol] = (float)$ratio;
@@ -333,7 +333,7 @@ class RelativeHomeValuesTable extends Table
     }
 
     /**
-     * Returns a housing value barometer status (ideal, growth, warning, or bad) for the specified county
+     * Returns a housing value barometer status (growing, recovering, warning, or distressed) for the specified county
      *
      * @param int $countyId County ID
      * @return string
