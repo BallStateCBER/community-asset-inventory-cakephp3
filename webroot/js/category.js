@@ -1,6 +1,6 @@
 let viewCategory = {
   setupMap: function() {
-    $('#county_paths path').each(function() {
+    $('#county-paths path').each(function() {
       // Set up popup info for county
       $(this).qtip({
         content: $('#' + this.id + '-details').remove(),
