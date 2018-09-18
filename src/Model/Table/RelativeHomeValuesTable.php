@@ -271,6 +271,11 @@ class RelativeHomeValuesTable extends Table
         ];
         foreach ($countyNames as $countyName) {
             foreach (['counties', 'neighboring'] as $subject) {
+                // Hide 'neighboring' dots for the all-counties chart
+                if (!$countyId && $subject == 'neighboring') {
+                    continue;
+                }
+
                 $growth = $rhvs[$subject]['growth'][$countyName];
                 $ratio = $rhvs[$subject]['ratio'][$countyName];
                 $tooltip = $subject == 'counties'
@@ -279,6 +284,7 @@ class RelativeHomeValuesTable extends Table
                 $strokeColor = $this->getColor($growth, $ratio);
                 $fillColor = $subject == 'neighboring' ? '#ffffff' : $strokeColor;
                 $pointSize = $countyId ? 12 : 4;
+
                 $style = sprintf(
                     'point {size: %s; shape-type: circle; stroke-color: %s; fill-color: %s;}',
                     $pointSize,
