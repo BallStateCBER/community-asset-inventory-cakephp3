@@ -49,9 +49,9 @@
           }
         };
 
-        let chart = new google.visualization.ScatterChart(document.getElementById('scatter-container'));
+        let scatterChart = new google.visualization.ScatterChart(document.getElementById('scatter-container'));
 
-        chart.draw(data, options);
+        scatterChart.draw(data, options);
       }
     </script>
 <?php $this->end(); ?>

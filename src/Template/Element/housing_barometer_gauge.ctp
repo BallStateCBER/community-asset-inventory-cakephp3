@@ -41,9 +41,9 @@ $intermediateColor = $barometerStatus == 'growth' ? $colors['growth'] : $colors[
           min: 1,
         };
 
-        let chart = new google.visualization.Gauge(document.getElementById('gauge-container'));
+        let gaugeChart = new google.visualization.Gauge(document.getElementById('gauge-container'));
 
-        chart.draw(data, options);
+        gaugeChart.draw(data, options);
       }
     </script>
 <?php $this->end(); ?>
