@@ -134,7 +134,7 @@ class CountiesTable extends Table
      * Returns an array of this county's grade scores (if available) and index scores for each category
      *
      * @param int $countyId ID of county record
-     * @param int[] $year Years to pull scores from
+     * @param int[] $years Years to pull scores from
      * @return array
      */
     public function getScores($countyId, $years)
