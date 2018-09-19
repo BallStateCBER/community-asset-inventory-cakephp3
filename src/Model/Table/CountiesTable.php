@@ -134,10 +134,10 @@ class CountiesTable extends Table
      * Returns an array of this county's grade scores (if available) and index scores for each category
      *
      * @param int $countyId ID of county record
-     * @param int $year Year to pull scores from
+     * @param int[] $year Years to pull scores from
      * @return array
      */
-    public function getScores($countyId, $year)
+    public function getScores($countyId, $years)
     {
         $scores = [];
 
@@ -146,6 +146,10 @@ class CountiesTable extends Table
         $categories = $categoriesTable
             ->find('threaded')
             ->toArray();
+        $yearConditions = [];
+        foreach ($years as $year) {
+            $yearConditions[] = ['year' => $year];
+        }
         foreach ($categories as $category) {
             foreach ($category->children as $childCategory) {
                 /** @var Score $score */
@@ -153,10 +157,10 @@ class CountiesTable extends Table
                     ->where([
                         'category_id' => $childCategory->id,
                         'county_id' => $countyId,
-                        'year' => $year
+                        'OR' => $yearConditions
                     ])
                     ->first();
-                $scores[$category->name][$childCategory->name] = $score
+                $scores[$category->name][$childCategory->name][$score->year] = $score
                     ? $score->value
                     : null;
             }

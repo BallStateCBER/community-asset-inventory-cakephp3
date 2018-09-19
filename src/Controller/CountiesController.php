@@ -27,8 +27,9 @@ class CountiesController extends AppController
             ->where(['simplified' => $countySlug])
             ->firstOrFail();
         $categoriesTable = TableRegistry::getTableLocator()->get('Categories');
+        $lowYear = 2012;
+        $highYear = 2018;
         $categories = $categoriesTable->find('threaded')
-            ->contain(['Scores'])
             ->orderAsc('name')
             ->all();
         /** @var CountiesTable $countiesTable */
@@ -39,7 +40,9 @@ class CountiesController extends AppController
             'barometerStatus' => $this->RelativeHomeValues->getStatusForCounty($county->id),
             'county' => $county,
             'categories' => $categories,
-            'scores' => $countiesTable->getScores($county->id, $this->dataYear),
+            'highYear' => $highYear,
+            'lowYear' => $lowYear,
+            'scores' => $countiesTable->getScores($county->id, [$lowYear, $highYear]),
             'titleForLayout' => $county->name
         ]);
     }

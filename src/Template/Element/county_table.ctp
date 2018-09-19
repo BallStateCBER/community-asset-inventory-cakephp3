@@ -1,16 +1,41 @@
 <?php
 /**
- * @var \App\View\AppView $this
  * @var \App\Model\Entity\Category[] $categories
+ * @var \App\View\AppView $this
  * @var array $scores
+ * @var int $highYear
+ * @var int $lowYear
  */
 ?>
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Category</th>
-            <th>Grade</th>
-            <th>Points</th>
+            <th>
+                Category
+            </th>
+            <th colspan="2" class="grade">
+                Grade
+            </th>
+            <th colspan="2" class="index">
+                Points
+            </th>
+        </tr>
+        <tr class="years">
+            <th>
+
+            </th>
+            <th class="grade">
+                <?= $lowYear ?>
+            </th>
+            <th class="grade">
+                <?= $highYear ?>
+            </th>
+            <th class="index">
+                <?= $lowYear ?>
+            </th>
+            <th class="index">
+                <?= $highYear ?>
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -26,16 +51,28 @@
                         ]
                     ) ?>
                 </th>
-                <td class="grade">
-                    <?php if (isset($scores[$category->name]['Grade'])): ?>
-                        <?= $scores[$category->name]['Grade'] ?>
-                    <?php else: ?>
-                        <span class="na">n/a</span>
-                    <?php endif; ?>
-                </td>
-                <td class="index">
-                    <?= round($scores[$category->name]['Index'], 2) ?>
-                </td>
+                <?php foreach ([$lowYear, $highYear] as $year): ?>
+                    <td class="grade">
+                        <?php if (isset($scores[$category->name]['Grade'])): ?>
+                            <?php if (isset($scores[$category->name]['Grade'][$year])): ?>
+                                <?= $scores[$category->name]['Grade'][$year] ?>
+                            <?php else: ?>
+                                <span class="na">TBA</span>
+                            <?php endif; ?>
+                        <?php else: ?>
+                            <span class="na">n/a</span>
+                        <?php endif; ?>
+                    </td>
+                <?php endforeach; ?>
+                <?php foreach ([$lowYear, $highYear] as $year): ?>
+                    <td class="index">
+                        <?php if (isset($scores[$category->name]['Index'][$year])): ?>
+                            <?= round($scores[$category->name]['Index'][$year], 2) ?>
+                        <?php else: ?>
+                            <span class="na">TBA</span>
+                        <?php endif; ?>
+                    </td>
+                <?php endforeach; ?>
             </tr>
         <?php endforeach; ?>
     </tbody>
