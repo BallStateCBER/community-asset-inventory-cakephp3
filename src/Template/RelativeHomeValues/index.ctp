@@ -10,3 +10,5 @@
 
 <?= $this->element('load_google_charts') ?>
 <?= $this->element('housing_barometer_scatter') ?>
+<?= $this->element('housing_barometer_table') ?>
+

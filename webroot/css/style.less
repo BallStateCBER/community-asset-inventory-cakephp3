@@ -509,3 +509,26 @@
         }
     }
 }
+@growingColor: #109618;
+@recoveringColor: #3366cc;
+@warningColor: #ff9900;
+@distressedColor: #dc3912;
+#barometer-table {
+    th {
+        font-size: 120%;
+        border-bottom-width: 3px;
+
+        &.barom-growing {
+            border-bottom-color: @growingColor;
+        }
+        &.barom-recovering {
+            border-bottom-color: @recoveringColor;
+        }
+        &.barom-warning {
+            border-bottom-color: @warningColor;
+        }
+        &.barom-distressed {
+            border-bottom-color: @distressedColor;
+        }
+    }
+}

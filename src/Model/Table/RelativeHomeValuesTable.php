@@ -347,4 +347,30 @@ class RelativeHomeValuesTable extends Table
 
         return $this->getStatus($growth, $ratio);
     }
+
+    /**
+     * Returns arrays of county names, keyed with barometer statuses
+     *
+     * @return array
+     */
+    public function getBarometerTableData()
+    {
+        $tableData = array_combine(
+            array_keys($this->getColors()),
+            [[], [], [], []]
+        );
+        $counties = $this->Counties->find()
+            ->orderAsc('name')
+            ->all();
+        foreach ($counties as $county) {
+            $ratios = $this->getResults(false, 'ratio', $county->id);
+            $growths = $this->getResults(false, 'growth', $county->id);
+            $ratio = array_values($ratios)[0];
+            $growth = array_values($growths)[0];
+            $status = $this->getStatus($growth, $ratio);
+            $tableData[$status][] = $county->name;
+        }
+
+        return $tableData;
+    }
 }
