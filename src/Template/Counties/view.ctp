@@ -6,10 +6,10 @@
  */
 ?>
 <?= $this->element('load_google_charts') ?>
+<h1>
+    <?= $county->name ?> County's Full Asset Inventory Report
+</h1>
 <div id="full-report">
-    <h2>
-        <?= $county->name ?> County's Full Asset Inventory Report
-    </h2>
     <p>
         Click on a category to view grades/points in all counties. Want to learn more about this county? Visit
         <?= $county->name ?> County's profile at the Center for Business and Economic Research's
@@ -19,8 +19,8 @@
     <?= $this->element('county_table') ?>
 </div>
 
-<h2>
+<h1>
     Housing Value Barometer
-</h2>
+</h1>
 <?= $this->element('housing_barometer_gauge') ?>
 <?= $this->element('housing_barometer_scatter') ?>
