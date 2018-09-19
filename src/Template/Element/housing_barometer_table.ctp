@@ -1,5 +1,6 @@
 <?php
 /**
+ * @var \App\View\AppView $this
  * @var array $barometerTableData
  */
 ?>
@@ -17,8 +18,15 @@
         <tr>
             <?php foreach ($barometerTableData as $header => $counties): ?>
                 <td class="barom-<?= $header ?>">
-                    <?php foreach ($counties as $countyName): ?>
-                        <?= $countyName ?>
+                    <?php foreach ($counties as $county): ?>
+                        <?= $this->Html->link(
+                            $county->name,
+                            [
+                                'controller' => 'Counties',
+                                'action' => 'view',
+                                $county->simplified
+                            ]
+                        ) ?>
                         <br />
                     <?php endforeach; ?>
                 </td>

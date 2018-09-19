@@ -360,6 +360,7 @@ class RelativeHomeValuesTable extends Table
             [[], [], [], []]
         );
         $counties = $this->Counties->find()
+            ->select(['id', 'name', 'simplified'])
             ->orderAsc('name')
             ->all();
         foreach ($counties as $county) {
@@ -368,7 +369,7 @@ class RelativeHomeValuesTable extends Table
             $ratio = array_values($ratios)[0];
             $growth = array_values($growths)[0];
             $status = $this->getStatus($growth, $ratio);
-            $tableData[$status][] = $county->name;
+            $tableData[$status][] = $county;
         }
 
         return $tableData;
