@@ -248,26 +248,30 @@ class RelativeHomeValuesTable extends Table
                 ['label' => 'Growing', 'type' => 'number'],
                 ['type' => 'string', 'role' => 'tooltip'],
                 ['type' => 'string', 'role' => 'style'],
+                ['type' => 'string', 'role' => 'annotation'],
 
                 ['label' => 'Recovering', 'type' => 'number'],
                 ['type' => 'string', 'role' => 'tooltip'],
                 ['type' => 'string', 'role' => 'style'],
+                ['type' => 'string', 'role' => 'annotation'],
 
                 ['label' => 'Warning', 'type' => 'number'],
                 ['type' => 'string', 'role' => 'tooltip'],
                 ['type' => 'string', 'role' => 'style'],
+                ['type' => 'string', 'role' => 'annotation'],
 
                 ['label' => 'Distressed', 'type' => 'number'],
                 ['type' => 'string', 'role' => 'tooltip'],
-                ['type' => 'string', 'role' => 'style']
+                ['type' => 'string', 'role' => 'style'],
+                ['type' => 'string', 'role' => 'annotation']
             ],
         ];
         $countyNames = array_keys($rhvs['counties']['ratio']);
         $columns = [
             'growing' => 1,
-            'recovering' => 4,
-            'warning' => 7,
-            'distressed' => 10
+            'recovering' => 5,
+            'warning' => 9,
+            'distressed' => 13
         ];
         foreach ($countyNames as $countyName) {
             foreach (['counties', 'neighboring'] as $subject) {
@@ -278,9 +282,17 @@ class RelativeHomeValuesTable extends Table
 
                 $growth = $rhvs[$subject]['growth'][$countyName];
                 $ratio = $rhvs[$subject]['ratio'][$countyName];
-                $tooltip = $subject == 'counties'
+                $status = $this->getStatus($growth, $ratio);
+                $tooltip = sprintf(
+                    '%s (%s)',
+                    $subject == 'counties'
+                        ? "$countyName County"
+                        : "Counties neighboring $countyName County",
+                    $status
+                );
+                $annotation = $subject == 'counties'
                     ? "$countyName County"
-                    : "Counties neighboring $countyName County";
+                    : "Neighboring counties";
                 $strokeColor = $this->getColor($growth, $ratio);
                 $fillColor = $subject == 'neighboring' ? '#ffffff' : $strokeColor;
                 $pointSize = $countyId ? 12 : 4;
@@ -291,30 +303,18 @@ class RelativeHomeValuesTable extends Table
                     $strokeColor,
                     $fillColor
                 );
-                $point = [
-                    $growth,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                ];
+                $point = array_fill(0, count($chartData[0]), null);
+                $point[0] = $growth;
 
                 // Add values to columns corresponding to growing/warning/etc. categories
-                $status = $this->getStatus($growth, $ratio);
                 $valueCol = $columns[$status];
                 $point[$valueCol] = (float)$ratio;
                 $tooltipCol = $valueCol + 1;
                 $point[$tooltipCol] = $tooltip;
                 $styleCol = $tooltipCol + 1;
                 $point[$styleCol] = $style;
+                $annotationCol = $styleCol + 1;
+                $point[$annotationCol] = $countyId ? $annotation : null;
 
                 $chartData[] = $point;
             }
