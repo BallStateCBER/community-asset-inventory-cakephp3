@@ -298,7 +298,7 @@ class RelativeHomeValuesTable extends Table
                 $pointSize = $countyId ? 12 : 4;
 
                 $style = sprintf(
-                    'point {size: %s; shape-type: circle; stroke-color: %s; fill-color: %s;}',
+                    'point {size: %s; shape-type: circle; stroke-color: %s; stroke-width: 5; fill-color: %s;}',
                     $pointSize,
                     $strokeColor,
                     $fillColor
