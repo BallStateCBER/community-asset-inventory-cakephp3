@@ -22,6 +22,7 @@ use Cake\Error\Middleware\ErrorHandlerMiddleware;
 use Cake\Http\BaseApplication;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
+use DebugKit\Plugin;
 
 /**
  * Application setup class.
@@ -56,7 +57,7 @@ class Application extends BaseApplication
          * Debug Kit should not be installed on a production system
          */
         if (Configure::read('debug')) {
-            $this->addPlugin(\DebugKit\Plugin::class);
+            $this->addPlugin(Plugin::class);
         }
     }
 
