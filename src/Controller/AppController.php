@@ -32,7 +32,7 @@ class AppController extends Controller
      * The year for which data is retrieved from the database
      * @var int $dataYear
      */
-    protected $dataYear = 2012;
+    protected $dataYear = 2018;
 
     /**
      * Initialization hook method.
