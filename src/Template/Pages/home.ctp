@@ -1,6 +1,6 @@
-<h2>
+<h1>
     What Is the Community Asset Inventory and Rankings?
-</h2>
+</h1>
 <p>
     This website offers a detailed look at the factors that affect the reputation of Indiana's communities, both large
     and small.  The purpose of this project is to provide policy makers and residents within Indiana's counties with
@@ -21,9 +21,9 @@
     </a>
 </div>
 
-<h2>
+<h1>
     How to Use This Site
-</h2>
+</h1>
 <p>
     To begin, click on a category to view data for all Indiana counties.  If you want to view all the data for a
     specific county, you can click on the county using the map, or you can select the county from the navigation panel
