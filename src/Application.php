@@ -15,6 +15,7 @@
 namespace App;
 
 use App\Command\ImportHomeValuesCommand;
+use App\Command\ImportScoresCommand;
 use Cake\Core\Configure;
 use Cake\Core\Exception\MissingPluginException;
 use Cake\Error\Middleware\ErrorHandlerMiddleware;
@@ -97,6 +98,7 @@ class Application extends BaseApplication
         $commands->autoDiscover();
 
         $commands->add('import-home-values', ImportHomeValuesCommand::class);
+        $commands->add('import-scores', ImportScoresCommand::class);
 
         return $commands;
     }
