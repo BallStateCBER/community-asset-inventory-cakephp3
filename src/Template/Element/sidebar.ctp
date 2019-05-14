@@ -1,9 +1,12 @@
 <?php
-    /**
-     * @var \App\View\AppView $this
-     * @var array $sidebar
-     */
-    $this->Html->script('sidebar', ['block' => 'script']);
+/**
+ * @var AppView $this
+ * @var array $sidebar
+ */
+$this->Html->script('sidebar', ['block' => 'script']);
+
+use App\View\AppView;
+use Cake\Routing\Router;
 ?>
 
 <h3>
@@ -18,7 +21,7 @@
 <ul id="categories" class="unstyled">
     <?php foreach ($sidebar['parentCategories'] as $category): ?>
         <?php
-            $url = \Cake\Routing\Router::url([
+            $url = Router::url([
                 'controller' => 'Categories',
                 'action' => 'view',
                 $category->slug
@@ -33,7 +36,7 @@
         </li>
     <?php endforeach; ?>
     <?php
-        $url = \Cake\Routing\Router::url([
+        $url = Router::url([
             'controller' => 'RelativeHomeValues',
             'action' => 'index'
         ]);
