@@ -99,7 +99,8 @@ class ImportScoresCommand extends Command
                 $this->abort();
             }
 
-            $dataColumns = [    // col num => (name, category ID)
+            // col num => (name, category ID)
+            $dataColumns = [
                 2 => ['People: Grade', 2],
                 3 => ['People: Index', 3],
 
@@ -135,9 +136,11 @@ class ImportScoresCommand extends Command
     }
 
     /**
-     * @param $categoryId
-     * @param $county
-     * @param $value
+     * Performs appropriate insert, update, and delete operations to import a score
+     *
+     * @param int $categoryId Category ID
+     * @param County $county County entity
+     * @param string $value Value
      * @return void
      */
     private function saveScore($categoryId, $county, $value)
