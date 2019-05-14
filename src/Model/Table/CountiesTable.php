@@ -152,17 +152,19 @@ class CountiesTable extends Table
         }
         foreach ($categories as $category) {
             foreach ($category->children as $childCategory) {
-                /** @var Score $score */
-                $score = $scoresTable->find()
+                /** @var Score[] $scores */
+                $categoryScores = $scoresTable->find()
                     ->where([
                         'category_id' => $childCategory->id,
                         'county_id' => $countyId,
                         'OR' => $yearConditions
                     ])
-                    ->first();
-                $scores[$category->name][$childCategory->name][$score->year] = $score
-                    ? $score->value
-                    : null;
+                    ->all();
+                foreach ($categoryScores as $score) {
+                    $scores[$category->name][$childCategory->name][$score->year] = $score
+                        ? $score->value
+                        : null;
+                }
             }
         }
 
