@@ -25,9 +25,14 @@
 		<?php foreach ($counties as $county): ?>
 			<tr>
 				<th>
-                    <a href="#" id="showreport_<?= $county->id ?>">
-                        <?= $county->name ?>
-                    </a>
+                    <?= $this->Html->link(
+                        $county->name,
+                        [
+                            'controller' => 'Counties',
+                            'action' => 'view',
+                            'slug' => $county->simplified
+                        ]
+                    ) ?>
 				</th>
 				<?php if ($scores['grade']): ?>
 					<td>
@@ -43,12 +48,3 @@
 		<?php endforeach; ?>
 	</tbody>
 </table>
-
-<?php $this->append('buffered'); ?>
-    <?php foreach ($counties as $county): ?>
-        $('#showreport_<?= $county->id ?>').click(function(event) {
-            event.preventDefault();
-            showFullReport('<?= $county->simplified ?>');
-        });
-    <?php endforeach; ?>
-<?php $this->end(); ?>
