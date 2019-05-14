@@ -104,6 +104,7 @@
 .tooltip p,
 #county-paths {
     fill: #fff;
+
     path {
         stroke: #000;
         stroke-width: 46;
@@ -112,24 +113,24 @@
         &.county {
             cursor: pointer;
         }
-    }
-    path.index_115 {
-        fill: @indexColor115;
-    }
-    path.index_105 {
-        fill: @indexColor105;
-    }
-    path.index_95 {
-        fill: @indexColor95;
-    }
-    path.index_85 {
-        fill: @indexColor85;
-    }
-    path.index_70 {
-        fill: @indexColor70;
-    }
-    path:hover {
-        fill: #fff;
+        &.index_115 {
+            fill: @indexColor115;
+        }
+        &.index_105 {
+            fill: @indexColor105;
+        }
+        &.index_95 {
+            fill: @indexColor95;
+        }
+        &.index_85 {
+            fill: @indexColor85;
+        }
+        &.index_70 {
+            fill: @indexColor70;
+        }
+        &:hover {
+            fill: #fff;
+        }
     }
 }
 #legend {
