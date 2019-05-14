@@ -9,15 +9,15 @@
 </p>
 
 <div id="downloads_screenshots">
-    <a href="/files/CAIR-Report2012.pdf" title="Print Report 2012 (PDF)">
-        <img src="/img/reports/PrintReport2012.png" alt="2012 Report" />
+    <a href="/files/CAIR Report 2019.pdf">
+        <img src="/img/reports/CAIR2019-cover.jpg" alt="Print Report 2018 (PDF)" />
         <br />
-        <span>Download Print Report 2012 (PDF)</span>
+        <span>Download Print Report 2019 (PDF)</span>
     </a>
-    <a href="/files/CAIR-RawData2012.xls" title="Raw Data Spreadsheet 2012 (Excel)">
-        <img src="/img/reports/RawData2012.png" alt="2012 Raw Data" />
+    <a href="/files/CAIR raw data 2019.xlsx">
+        <img src="/img/reports/RawData2012.png" alt="Raw Data Spreadsheet 2018 (Excel)" />
         <br />
-        <span>Download Raw Data Spreadsheet 2012 (Excel)</span>
+        <span>Download Raw Data Spreadsheet 2019 (Excel)</span>
     </a>
 </div>
 
