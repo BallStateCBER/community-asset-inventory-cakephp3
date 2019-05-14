@@ -1,7 +1,10 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\Score;
+use App\Model\Entity\County;
+use Cake\Datasource\EntityInterface;
+use Cake\ORM\Association\BelongsTo;
+use Cake\ORM\Association\HasMany;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -11,16 +14,16 @@ use Cake\Validation\Validator;
 /**
  * Counties Model
  *
- * @property \App\Model\Table\StatesTable|\Cake\ORM\Association\BelongsTo $States
- * @property \App\Model\Table\ScoresTable|\Cake\ORM\Association\HasMany $Scores
+ * @property StatesTable|BelongsTo $States
+ * @property ScoresTable|HasMany $Scores
  *
- * @method \App\Model\Entity\County get($primaryKey, $options = [])
- * @method \App\Model\Entity\County newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\County[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\County|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\County patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\County[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\County findOrCreate($search, callable $callback = null, $options = [])
+ * @method County get($primaryKey, $options = [])
+ * @method County newEntity($data = null, array $options = [])
+ * @method County[] newEntities(array $data, array $options = [])
+ * @method County|bool save(EntityInterface $entity, $options = [])
+ * @method County patchEntity(EntityInterface $entity, array $data, array $options = [])
+ * @method County[] patchEntities($entities, array $data, array $options = [])
+ * @method County findOrCreate($search, callable $callback = null, $options = [])
  */
 class CountiesTable extends Table
 {
@@ -51,8 +54,8 @@ class CountiesTable extends Table
     /**
      * Default validation rules.
      *
-     * @param \Cake\Validation\Validator $validator Validator instance.
-     * @return \Cake\Validation\Validator
+     * @param Validator $validator Validator instance.
+     * @return Validator
      */
     public function validationDefault(Validator $validator)
     {
@@ -105,8 +108,8 @@ class CountiesTable extends Table
      * Returns a rules checker object that will be used for validating
      * application integrity.
      *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
-     * @return \Cake\ORM\RulesChecker
+     * @param RulesChecker $rules The rules object to be modified.
+     * @return RulesChecker
      */
     public function buildRules(RulesChecker $rules)
     {
@@ -139,20 +142,20 @@ class CountiesTable extends Table
      */
     public function getScores($countyId, $years)
     {
-        $scores = [];
-
-        $scoresTable = TableRegistry::getTableLocator()->get('Scores');
         $categoriesTable = TableRegistry::getTableLocator()->get('Categories');
         $categories = $categoriesTable
             ->find('threaded')
             ->toArray();
+
         $yearConditions = [];
         foreach ($years as $year) {
             $yearConditions[] = ['year' => $year];
         }
+
+        $retval = [];
+        $scoresTable = TableRegistry::getTableLocator()->get('Scores');
         foreach ($categories as $category) {
             foreach ($category->children as $childCategory) {
-                /** @var Score[] $scores */
                 $categoryScores = $scoresTable->find()
                     ->where([
                         'category_id' => $childCategory->id,
@@ -161,13 +164,11 @@ class CountiesTable extends Table
                     ])
                     ->all();
                 foreach ($categoryScores as $score) {
-                    $scores[$category->name][$childCategory->name][$score->year] = $score
-                        ? $score->value
-                        : null;
+                    $retval[$category->name][$childCategory->name][$score->year] = $score ? $score->value : null;
                 }
             }
         }
 
-        return $scores;
+        return $retval;
     }
 }
