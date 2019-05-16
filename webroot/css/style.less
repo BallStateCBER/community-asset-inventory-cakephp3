@@ -110,9 +110,6 @@
         stroke-width: 46;
         stroke-linejoin: round;
 
-        &.county {
-            cursor: pointer;
-        }
         &.index_115 {
             fill: @indexColor115;
         }
@@ -264,43 +261,58 @@
 }
 
 /* Category report table */
-#category-report .table-wrapper {
-    table {
-        border-collapse: collapse;
-        font-size: 120%;
-        margin: auto;
-        width: auto;
-    }
-    thead {
-        border-bottom: 1px solid #000;
+#category-report {
+    #county-paths {
+        fill: #fff;
 
-        th {
-            padding: 0 5px;
-        }
-    }
-    tbody {
-        th {
-            border-bottom: 1px solid #999;
-            border-right: 1px solid #000;
-            font-weight: normal;
-            padding: 0 5px 0 0;
-            text-align: left;
-        }
-        td {
-            border-bottom: 1px solid #999;
-            padding: 0 5px;
-            text-align: center;
+        path {
+            stroke: #000;
+            stroke-width: 46;
+            stroke-linejoin: round;
 
-            &:nth-child(2) {
-                border-right: 1px solid #999;
+            &.county {
+                cursor: pointer;
             }
         }
-        .color {
-            width: 20px;
-        }
     }
-    a:hover {
-        color: #556666;
+    .table-wrapper {
+        table {
+            border-collapse: collapse;
+            font-size: 120%;
+            margin: auto;
+            width: auto;
+        }
+        thead {
+            border-bottom: 1px solid #000;
+
+            th {
+                padding: 0 5px;
+            }
+        }
+        tbody {
+            th {
+                border-bottom: 1px solid #999;
+                border-right: 1px solid #000;
+                font-weight: normal;
+                padding: 0 5px 0 0;
+                text-align: left;
+            }
+            td {
+                border-bottom: 1px solid #999;
+                padding: 0 5px;
+                text-align: center;
+
+                &:nth-child(2) {
+                    border-right: 1px solid #999;
+                }
+            }
+            .color {
+                width: 20px;
+            }
+        }
+        a:hover {
+            color: #556666;
+        }
     }
 }
 
