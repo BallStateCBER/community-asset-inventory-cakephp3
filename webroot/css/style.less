@@ -541,6 +541,8 @@
     }
 }
 #gauge-container {
+    float: right;
+
     svg {
         g {
             g {
@@ -555,6 +557,18 @@
 @recoveringColor: #3366cc;
 @warningColor: #ff9900;
 @distressedColor: #dc3912;
+.housing-growing {
+    color: @growingColor;
+}
+.housing-recovering {
+    color: @recoveringColor;
+}
+.housing-warning {
+    color: @warningColor;
+}
+.housing-distressed {
+    color: @distressedColor;
+}
 #barometer-table {
     th {
         font-size: 120%;
