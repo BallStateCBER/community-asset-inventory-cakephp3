@@ -29,3 +29,23 @@
     specific county, you can click on the county using the map, or you can select the county from the navigation panel
     on the left.
 </p>
+
+<h1>
+    New for 2019
+</h1>
+<p>
+    The updated Community Asset Inventory and Rankings informs communities of the economic and residential strengths in
+    Indiana's 92 counties. In the 2019 report, we have added a new measure:
+    <?= $this->Html->link(
+        'the housing barometer',
+        [
+            'controller' => 'RelativeHomeValues',
+            'action' => 'index'
+        ]
+    ) ?>.
+</p>
+<p>
+    The housing barometer evaluates county housing markets using county-wide home values and the relative growth rate
+    over eight years. When compared to the state average for value and growth, these variables indicate which of four
+    housing market scenarios is present in a given county: growing, warning, distressed, and recovering housing markets.
+</p>
