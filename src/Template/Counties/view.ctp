@@ -44,7 +44,7 @@ use App\View\AppView;
     <?= $this->element('county_table') ?>
 </div>
 
-<?= $this->element('housing_barometer_gauge') ?>
+<?= $this->element('HousingBarometer/gauge') ?>
 <h1>
     Housing Value Barometer
 </h1>
@@ -58,6 +58,6 @@ use App\View\AppView;
     higher quality housing stock. In that way, the price changes reflect both the value of existing and new homes,
     without holding home quality constant.
 </p>
-<?= $this->element('housing_barometer_scatter') ?>
+<?= $this->element('HousingBarometer/scatter') ?>
 
-<?= $this->element('housing_barometer_footnote') ?>
+<?= $this->element('HousingBarometer/footnote') ?>
