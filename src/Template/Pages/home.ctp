@@ -33,6 +33,8 @@
 <h1>
     New for 2019
 </h1>
+<?= $this->element('load_google_charts') ?>
+<?= $this->element('HousingBarometer/gauge') ?>
 <p>
     The updated Community Asset Inventory and Rankings informs communities of the economic and residential strengths in
     Indiana's 92 counties. In the 2019 report, we have added a new measure:

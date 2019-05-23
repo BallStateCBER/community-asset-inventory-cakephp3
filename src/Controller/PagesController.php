@@ -14,12 +14,14 @@
  */
 namespace App\Controller;
 
+use App\Model\Table\RelativeHomeValuesTable;
+
 /**
- * Static content controller
+ * Pages controller
  *
  * This controller will render views from Template/Pages/
  *
- * @link https://book.cakephp.org/3.0/en/controllers/pages-controller.html
+ * @property RelativeHomeValuesTable $RelativeHomeValues
  */
 class PagesController extends AppController
 {
@@ -31,6 +33,12 @@ class PagesController extends AppController
      */
     public function home()
     {
+        $exampleCountyId = 49; // Marion
+        $this->loadModel('RelativeHomeValues');
+        $this->set([
+            'barometerStatus' => $this->RelativeHomeValues->getStatusForCounty($exampleCountyId),
+            'colors' => $this->RelativeHomeValues->getColors()
+        ]);
     }
 
     /**
