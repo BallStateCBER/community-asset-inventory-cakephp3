@@ -24,10 +24,10 @@ class CategoriesSourcesTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.categories_sources',
-        'app.sources',
-        'app.categories',
-        'app.scores'
+        'app.Categories',
+        'app.CategoriesSources',
+        'app.Scores',
+        'app.Sources'
     ];
 
     /**

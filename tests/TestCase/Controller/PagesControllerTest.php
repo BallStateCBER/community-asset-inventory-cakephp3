@@ -28,9 +28,9 @@ class PagesControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
-        'app.categories',
-        'app.counties',
-        'app.relative_home_values'
+        'app.Categories',
+        'app.Counties',
+        'app.RelativeHomeValues'
     ];
 
     /**

@@ -24,9 +24,9 @@ class CountiesTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.counties',
-        'app.states',
-        'app.scores'
+        'app.Counties',
+        'app.Scores',
+        'app.States'
     ];
 
     /**

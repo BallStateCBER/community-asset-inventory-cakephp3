@@ -24,8 +24,8 @@ class RelativeHomeValuesTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.relative_home_values',
-        'app.counties'
+        'app.counties',
+        'app.RelativeHomeValues'
     ];
 
     /**
