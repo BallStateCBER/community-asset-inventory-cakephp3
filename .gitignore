@@ -41,3 +41,7 @@ composer.phar
 /webroot/manifest.json
 /webroot/mstile-150x150.png
 /webroot/safari-pinned-tab.svg
+
+# Spreadsheets
+/webroot/files/*.xls
+/webroot/files/*.xlsx
