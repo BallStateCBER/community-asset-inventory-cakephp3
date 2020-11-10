@@ -58,19 +58,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/BallStateCBER/datacenter-plugin-cakephp3.git",
-                "reference": "1069126868bbd8a380dc5cf95ad2735aa662c506"
+                "reference": "83d46513426ebb993ad2c26938cddf8ff5c40187"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BallStateCBER/datacenter-plugin-cakephp3/zipball/1069126868bbd8a380dc5cf95ad2735aa662c506",
-                "reference": "1069126868bbd8a380dc5cf95ad2735aa662c506",
+                "url": "https://api.github.com/repos/BallStateCBER/datacenter-plugin-cakephp3/zipball/83d46513426ebb993ad2c26938cddf8ff5c40187",
+                "reference": "83d46513426ebb993ad2c26938cddf8ff5c40187",
                 "shasum": ""
             },
             "require": {
                 "cakephp/cakephp": "^3.5",
                 "cakephp/cakephp-codesniffer": "*",
                 "composer/composer": "^1.5.2",
-                "php": ">=7.1",
+                "php": ">=7.2",
                 "twbs/bootstrap": "~3.0"
             },
             "require-dev": {
@@ -84,7 +84,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Ball State CBER DataCenter plugin for CakePHP 3",
-            "time": "2019-07-25T21:09:58+00:00"
+            "time": "2020-11-10T22:06:00+00:00"
         },
         {
             "name": "cakephp/cakephp",
@@ -1994,6 +1994,7 @@
                 "psr",
                 "psr-7"
             ],
+            "abandoned": "laminas/laminas-diactoros",
             "time": "2018-09-05T19:29:37+00:00"
         }
     ],
@@ -2167,6 +2168,7 @@
                 "extension",
                 "twig"
             ],
+            "abandoned": "twig/cache-extension",
             "time": "2017-01-10T22:04:15+00:00"
         },
         {
@@ -2466,6 +2468,7 @@
                     "homepage": "http://www.acci.cz"
                 }
             ],
+            "abandoned": "php-parallel-lint/php-console-color",
             "time": "2014-04-08T15:00:19+00:00"
         },
         {
@@ -2510,6 +2513,7 @@
                     "homepage": "http://www.acci.cz/"
                 }
             ],
+            "abandoned": "php-parallel-lint/php-console-highlighter",
             "time": "2015-04-20T18:58:01+00:00"
         },
         {
@@ -3285,6 +3289,7 @@
             "keywords": [
                 "tokenizer"
             ],
+            "abandoned": true,
             "time": "2017-11-27T05:48:46+00:00"
         },
         {
@@ -4396,12 +4401,12 @@
             "version": "4.3.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/WyriHaximus/TwigView.git",
+                "url": "https://github.com/cakephp/legacy-twig-view.git",
                 "reference": "ec2771e6a1fe799f9b16eff19da424cd04d593b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/TwigView/zipball/ec2771e6a1fe799f9b16eff19da424cd04d593b7",
+                "url": "https://api.github.com/repos/cakephp/legacy-twig-view/zipball/ec2771e6a1fe799f9b16eff19da424cd04d593b7",
                 "reference": "ec2771e6a1fe799f9b16eff19da424cd04d593b7",
                 "shasum": ""
             },
@@ -4463,5 +4468,6 @@
         "php": ">=7.1",
         "ext-json": "*"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
