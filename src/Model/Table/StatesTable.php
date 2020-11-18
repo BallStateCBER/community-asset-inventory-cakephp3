@@ -48,30 +48,27 @@ class StatesTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('id')
-            ->allowEmpty('id', 'create');
+            ->integer('id');
 
         $validator
             ->scalar('name')
             ->maxLength('name', 100)
             ->requirePresence('name', 'create')
-            ->notEmpty('name');
+            ->allowEmptyString('name', 'State name cannot be empty', false);
 
         $validator
             ->scalar('abbreviation')
             ->maxLength('abbreviation', 4)
             ->requirePresence('abbreviation', 'create')
-            ->notEmpty('abbreviation');
+            ->allowEmptyString('abbreviation', 'State abbreviation cannot be empty', false);
 
         $validator
             ->integer('fips')
-            ->requirePresence('fips', 'create')
-            ->notEmpty('fips');
+            ->requirePresence('fips', 'create');
 
         $validator
             ->boolean('supported')
-            ->requirePresence('supported', 'create')
-            ->notEmpty('supported');
+            ->requirePresence('supported', 'create');
 
         return $validator;
     }
