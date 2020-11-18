@@ -224,7 +224,6 @@ class ImportScoresCommand extends Command
      */
     private function deleteRedundantScores($scores)
     {
-        /** @var Score $redundantRow */
         foreach ($scores as $redundantRow) {
             $this->scoresTable->delete($redundantRow);
             $this->io->success(" -> Deleted redundant score #$redundantRow->id in database");
