@@ -50,13 +50,12 @@ class SourcesTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('id')
-            ->allowEmpty('id', 'create');
+            ->integer('id');
 
         $validator
             ->scalar('name')
             ->requirePresence('name', 'create')
-            ->notEmpty('name');
+            ->allowEmptyString('name', 'Source name cannot be empty', false);
 
         return $validator;
     }

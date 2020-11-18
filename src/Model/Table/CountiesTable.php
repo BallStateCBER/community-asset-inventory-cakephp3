@@ -60,46 +60,44 @@ class CountiesTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('id')
-            ->allowEmpty('id', 'create');
+            ->integer('id');
 
         $validator
             ->scalar('name')
             ->maxLength('name', 100)
             ->requirePresence('name', 'create')
-            ->notEmpty('name');
+            ->allowEmptyString('name', 'County name cannot be empty', false);
 
         $validator
             ->scalar('simplified')
             ->maxLength('simplified', 100)
             ->requirePresence('simplified', 'create')
-            ->notEmpty('simplified');
+            ->allowEmptyString('simplified', '"Simplified" cannot be empty', false);
 
         $validator
             ->scalar('county_seat')
             ->maxLength('county_seat', 200)
             ->requirePresence('county_seat', 'create')
-            ->notEmpty('county_seat');
+            ->allowEmptyString('county_seat', 'County seat cannot be empty', false);
 
         $validator
             ->integer('fips')
-            ->requirePresence('fips', 'create')
-            ->notEmpty('fips');
+            ->requirePresence('fips', 'create');
 
         $validator
             ->scalar('founded')
             ->maxLength('founded', 4)
             ->requirePresence('founded', 'create')
-            ->notEmpty('founded');
+            ->allowEmptyString('founded', '"Founded" cannot be empty', false);
 
         $validator
-            ->requirePresence('square_miles', 'create')
-            ->notEmpty('square_miles');
+            ->integer('square_miles')
+            ->requirePresence('square_miles', 'create');
 
         $validator
             ->scalar('description')
             ->requirePresence('description', 'create')
-            ->notEmpty('description');
+            ->allowEmptyString('description', 'Description cannot be empty', false);;
 
         return $validator;
     }

@@ -57,33 +57,27 @@ class RelativeHomeValuesTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('id')
-            ->allowEmpty('id', 'create');
+            ->integer('id');
 
         $validator
             ->boolean('is_neighboring')
-            ->requirePresence('is_neighboring', 'create')
-            ->notEmpty('is_neighboring');
+            ->requirePresence('is_neighboring', 'create');
 
         $validator
             ->boolean('is_ratio')
-            ->requirePresence('is_ratio', 'create')
-            ->notEmpty('is_ratio');
+            ->requirePresence('is_ratio', 'create');
 
         $validator
             ->boolean('is_growth')
-            ->requirePresence('is_growth', 'create')
-            ->notEmpty('is_growth');
+            ->requirePresence('is_growth', 'create');
 
         $validator
             ->integer('year')
-            ->requirePresence('year', 'create')
-            ->notEmpty('year');
+            ->requirePresence('year', 'create');
 
         $validator
             ->numeric('value')
-            ->requirePresence('value', 'create')
-            ->notEmpty('value');
+            ->requirePresence('value', 'create');
 
         return $validator;
     }

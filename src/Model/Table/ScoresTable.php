@@ -58,24 +58,20 @@ class ScoresTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('id')
-            ->allowEmpty('id', 'create');
+            ->integer('id');
 
         $validator
             ->boolean('is_state_average')
-            ->requirePresence('is_state_average', 'create')
-            ->notEmpty('is_state_average');
+            ->requirePresence('is_state_average', 'create');
 
         $validator
             ->scalar('value')
             ->maxLength('value', 20)
-            ->requirePresence('value', 'create')
-            ->notEmpty('value');
+            ->requirePresence('value', 'create');
 
         $validator
             ->integer('year')
-            ->requirePresence('year', 'create')
-            ->notEmpty('year');
+            ->requirePresence('year', 'create');
 
         return $validator;
     }
