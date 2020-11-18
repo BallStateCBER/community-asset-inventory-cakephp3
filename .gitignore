@@ -23,10 +23,11 @@ composer.phar
 /webroot/js/script.concat.js
 /webroot/js/*.min.js
 
-# Environment variable definitions
+# Protected information
 /config/.env
 /config/.env.production
 /config/.env.dev
+/config/app_local.php
 
 # Code coverage report
 /build/logs/clover.xml
