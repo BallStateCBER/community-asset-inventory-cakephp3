@@ -367,5 +367,5 @@ return [
 
     'data_center_subsite_title' => 'Indiana Community Asset Inventory and Rankings',
     'data_center_subsite_url' => env('FULL_BASE_URL', 'https://cair.cberdata.org'),
-    'google_analytics_id' => 'UA-32998887-3'
+    'google_analytics_id' => 'G-F3QVDGT5TD',
 ];
