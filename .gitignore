@@ -28,6 +28,7 @@ composer.phar
 /config/.env.production
 /config/.env.dev
 /config/app_local.php
+/config/app_local.production.php
 
 # Code coverage report
 /build/logs/clover.xml
